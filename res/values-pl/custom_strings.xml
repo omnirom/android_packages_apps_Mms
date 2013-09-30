@@ -49,7 +49,9 @@
     <string name="pref_title_mms_notification_vibrate_custom">Własny wzór wibracji</string>
     <string name="pref_text_mms_notification_vibrate_custom">Format wyłącz/włącz w milisekundach: wyłącz, włącz, wyłącz, włącz, ...</string>
     <string name="pref_extra_settings">Dodatkowe ustawienia</string>
-    <string name="pref_title_enable_emojis">Włącz emotikony</string>
+    <string name="pref_title_enable_emoticons">Włącz emotikony</string>
+    <string name="pref_summary_enable_emoticons">Włącz zamianę emotikon na obrazki</string>
+    <string name="pref_title_enable_emojis">Włącz Emoji</string>
     <string name="pref_summary_enable_emojis">Włącz wsparcie dla Emoji, zestawu 471 emotikon w standardzie Unicode</string>
     <string name="menu_insert_emoji">Wstaw emotikony</string>
     <string name="pref_title_mms_full_timestamp">Pełna data</string>

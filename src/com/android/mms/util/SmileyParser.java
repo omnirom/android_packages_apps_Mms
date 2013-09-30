@@ -21,11 +21,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 
 import com.android.mms.R;
+import com.android.mms.ui.MessagingPreferenceActivity;
 
 /**
  * A class for annotating a CharSequence with spans to convert textual emoticons
@@ -173,6 +176,11 @@ public class SmileyParser {
         return Pattern.compile(patternString.toString());
     }
 
+    public static boolean areEmoticonsEnabled(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean(MessagingPreferenceActivity.ENABLE_EMOTICONS,
+                true);
+    }
 
     /**
      * Adds ImageSpans to a CharSequence that replace textual emoticons such
@@ -183,6 +191,8 @@ public class SmileyParser {
      *         recognized emoticons.
      */
     public CharSequence addSmileySpans(CharSequence text) {
+        if(!areEmoticonsEnabled(mContext))
+            return text; //return without substituting
         SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
         Matcher matcher = mPattern.matcher(text);
