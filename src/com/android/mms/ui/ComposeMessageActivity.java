@@ -150,6 +150,26 @@ import com.google.android.mms.pdu.PduPart;
 import com.google.android.mms.pdu.PduPersister;
 import com.google.android.mms.pdu.SendReq;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.regex.Pattern;
+
 /**
  * This is the main UI for:
  * 1. Composing a new message;
@@ -176,6 +196,7 @@ public class ComposeMessageActivity extends Activity
     public static final int REQUEST_CODE_ECM_EXIT_DIALOG  = 107;
     public static final int REQUEST_CODE_ADD_CONTACT      = 108;
     public static final int REQUEST_CODE_PICK             = 109;
+    public static final int REQUEST_CODE_ADD_RECIPIENTS   = 110;
 
     private static final String TAG = "Mms/compose";
 
@@ -343,6 +364,11 @@ public class ComposeMessageActivity extends Activity
     // keys for extras and icicles
     public final static String THREAD_ID = "thread_id";
     private final static String RECIPIENTS = "recipients";
+
+    // easy selector
+    private int mReceipientsCount;
+    private boolean[] mReceipientsChecked;
+    private List<CharSequence[]> mReceipientsList;
 
     @SuppressWarnings("unused")
     public static void log(String logMsg) {
@@ -3025,9 +3051,26 @@ public class ComposeMessageActivity extends Activity
                 }
                 break;
 
+            case REQUEST_CODE_ADD_RECIPIENTS:
+                insertNumbersIntoRecipientsEditor((String[])data.getExtra("com.android.mms.ui.AddRecipients"));
+                break;
+
             default:
                 if (LogTag.VERBOSE) log("bail due to unknown requestCode=" + requestCode);
                 break;
+        }
+    }
+
+    private void insertNumbersIntoRecipientsEditor(String[] numbers) {
+        ContactList list = ContactList.getByNumbers(Arrays.asList(numbers), true);
+        // only add new contacts
+        ContactList existing=mRecipientsEditor.constructContactsFromInput(true);
+        Iterator<Contact> nextContact = list.iterator();
+        while (nextContact.hasNext()){
+            Contact contact = nextContact.next();
+            if (!existing.contains(contact)){
+                mRecipientsEditor.appendContact(contact);
+            }
         }
     }
 
@@ -3385,29 +3428,10 @@ public class ComposeMessageActivity extends Activity
     public void onClick(View v) {
         if ((v == mSendButtonSms || v == mSendButtonMms) && isPreparedForSending()) {
             confirmSendMessageIfNeeded();
-        } else if ((v == mRecipientsPicker)) {
-            launchMultiplePhonePicker();
+        } else if (v == mRecipientsPicker) {
+            Intent intent = new Intent(ComposeMessageActivity.this, AddRecipientsList.class);
+            startActivityForResult(intent, REQUEST_CODE_ADD_RECIPIENTS);
         }
-    }
-
-    private void launchMultiplePhonePicker() {
-        Intent intent = new Intent(Intents.ACTION_GET_MULTIPLE_PHONES);
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.setType(Phone.CONTENT_TYPE);
-        // We have to wait for the constructing complete.
-        ContactList contacts = mRecipientsEditor.constructContactsFromInput(true);
-        int urisCount = 0;
-        Uri[] uris = new Uri[contacts.size()];
-        urisCount = 0;
-        for (Contact contact : contacts) {
-            if (Contact.CONTACT_METHOD_TYPE_PHONE == contact.getContactMethodType()) {
-                    uris[urisCount++] = contact.getPhoneUri();
-            }
-        }
-        if (urisCount > 0) {
-            intent.putExtra(Intents.EXTRA_PHONE_URIS, uris);
-        }
-        startActivityForResult(intent, REQUEST_CODE_PICK);
     }
 
     @Override
