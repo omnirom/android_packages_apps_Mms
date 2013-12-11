@@ -72,7 +72,7 @@ public class ClassZeroActivity extends Activity {
     private long mTimerSet = 0;
     private AlertDialog mDialog = null;
 
-    private ArrayList<SmsMessage> messageQueue = null;
+    private ArrayList<SmsMessage> mMessageQueue = null;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -82,15 +82,34 @@ public class ClassZeroActivity extends Activity {
                 mRead = false;
                 mDialog.dismiss();
                 saveMessage();
-                messageQueue.remove(0);
-                if (messageQueue.size() == 0) {
-                    finish();
-                } else {
-                    displayZeroMessage(messageQueue.get(0));
-                }
+                processNextMessage();
             }
         }
     };
+
+    private boolean queueMsgFromIntent(Intent msgIntent) {
+        byte[] pdu = msgIntent.getByteArrayExtra("pdu");
+        String format = msgIntent.getStringExtra("format");
+        SmsMessage rawMessage = SmsMessage.createFromPdu(pdu, format);
+        String message = rawMessage.getMessageBody();
+        if (TextUtils.isEmpty(message)) {
+            if (mMessageQueue.size() == 0) {
+                finish();
+            }
+            return false;
+        }
+        mMessageQueue.add(rawMessage);
+        return true;
+    }
+
+    private void processNextMessage() {
+        mMessageQueue.remove(0);
+        if (mMessageQueue.size() == 0) {
+            finish();
+        } else {
+            displayZeroMessage(mMessageQueue.get(0));
+        }
+    }
 
     private void saveMessage() {
         Uri messageUri = null;
@@ -110,15 +129,7 @@ public class ClassZeroActivity extends Activity {
     @Override
     protected void onNewIntent(Intent msgIntent) {
         /* Running with another visible message, queue this one */
-        byte[] pdu = msgIntent.getByteArrayExtra("pdu");
-        String format = msgIntent.getStringExtra("format");
-        SmsMessage rawMessage = SmsMessage.createFromPdu(pdu, format);
-        CharSequence messageChars = rawMessage.getMessageBody();
-        String message = messageChars.toString();
-        if (TextUtils.isEmpty(message)) {
-            return;
-        }
-        messageQueue.add(rawMessage);
+        queueMsgFromIntent(msgIntent);
     }
 
     @Override
@@ -128,41 +139,27 @@ public class ClassZeroActivity extends Activity {
         getWindow().setBackgroundDrawableResource(
                 R.drawable.class_zero_background);
 
-        if (messageQueue == null) {
-            messageQueue = new ArrayList<SmsMessage>();
+        if (mMessageQueue == null) {
+            mMessageQueue = new ArrayList<SmsMessage>();
         }
 
-        byte[] pdu = getIntent().getByteArrayExtra("pdu");
-        String format = getIntent().getStringExtra("format");
-        SmsMessage rawMessage = SmsMessage.createFromPdu(pdu, format);
-        CharSequence messageChars = rawMessage.getMessageBody();
-        String message = messageChars.toString();
-        if (TextUtils.isEmpty(message)) {
-            if (messageQueue.size() == 0) {
-                finish();
-            }
+        if (!queueMsgFromIntent(getIntent())) {
             return;
         }
-        messageQueue.add(rawMessage);
-        if (messageQueue.size() == 1) {
-            displayZeroMessage(rawMessage);
+
+        if (mMessageQueue.size() == 1) {
+            displayZeroMessage(mMessageQueue.get(0));
         }
+
         if (icicle != null) {
             mTimerSet = icicle.getLong(TIMER_FIRE, mTimerSet);
         }
     }
 
     private void displayZeroMessage(SmsMessage rawMessage) {
-        CharSequence messageChars = rawMessage.getMessageBody();
+        String message = rawMessage.getMessageBody();
         /* This'll be used by the save action */
         mMessage = rawMessage;
-        String message = messageChars.toString();
-
-        // TODO: The following line adds an emptry string before and after a message.
-        // This is not the correct way to layout a message. This is more of a hack
-        // to work-around a bug in AlertDialog. This needs to be fixed later when
-        // Android fixes the bug in AlertDialog.
-        if (message.length() < BUFFER_OFFSET) messageChars = BUFFER + message + BUFFER;
 
         mDialog = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_DARK).setMessage(message)
                 .setPositiveButton(R.string.save, mSaveListener)
@@ -211,12 +208,7 @@ public class ClassZeroActivity extends Activity {
     private final OnClickListener mCancelListener = new OnClickListener() {
         public void onClick(DialogInterface dialog, int whichButton) {
             dialog.dismiss();
-            messageQueue.remove(0);
-            if (messageQueue.size() == 0) {
-                finish();
-            } else {
-                displayZeroMessage(messageQueue.get(0));
-            }
+            processNextMessage();
         }
     };
 
@@ -225,12 +217,7 @@ public class ClassZeroActivity extends Activity {
             mRead = true;
             saveMessage();
             dialog.dismiss();
-            messageQueue.remove(0);
-            if (messageQueue.size() == 0) {
-                finish();
-            } else {
-                displayZeroMessage(messageQueue.get(0));
-            }
+            processNextMessage();
         }
     };
 
