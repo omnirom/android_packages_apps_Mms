@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Message options - Add SMS to calendar -->
+    <string name="menu_add_to_calendar">Dodaj do kalendarza</string>
+
+    <!-- QM - Dialog box buttons -->
+    <string name="button_close">Zamknij</string>
+    <string name="button_view">Zobacz</string>
+    <string name="button_templates">Szablony</string>
+
+    <!-- QM - Hint text in message body field when keyboard is exposed -->
+    <string name="type_to_reply_text_enter_to_send">Zacznij pisać, aby utworzyć odpowiedź</string>
+
+    <!-- QM - Toast -->
+    <string name="toast_sending_message">Wysyłanie wiadomości</string>
+
+    <!-- QM - Quick reply -->
+    <string name="qm_quick_reply">Szybka odpowiedź</string>
+    <string name="qm_mark_read">Przeczytana</string>
+
+    <!-- QM - Counter separator -->
+    <string name="message_counter_separator">z</string>
+
+    <!-- NOTIFICATIONS -->
+    <!-- Privacy mode -->
+    <string name="pref_title_notification_privacy_mode_enabled">Tryb prywatności</string>
+    <string name="pref_summary_notification_privacy_mode_enabled">Ukrywa treść i nadawcę na pasku statusu oraz wyłącza \'Szybką odpowiedź\'</string>
+    <string name="notification_single_title_privacy_mode">Nowa wiadomość</string>
+    <string name="notification_single_text_privacy_mode">1 nieprzeczytana wiadomość</string>
+    <string name="notification_multiple_title_privacy_mode">Nie</string>
+    <string name="notification_multiple_text_privacy_mode"><xliff:g id="number" example="3">%1$s</xliff:g> nieprzeczytanych wiadomości</string>
+    <string name="notification_ticker_privacy_mode">Nowe wiadomości</string>
+
+    <!-- QUICKMESSAGE -->
+    <string name="pref_quickmessage">Szybka odpowiedź</string>
+
+    <!-- Use dark theme -->
+    <string name="pref_dark_theme_title">Użyj ciemnego motywu</string>
+    <string name="pref_dark_theme_summary">Jeżeli opcja nie jest włączona, zostanie użyty \'jasny\' motyw</string>
+
+    <!-- Show pop-up -->
+    <string name="pref_quickmessage_title">Pokaż pop-up</string>
+    <string name="pref_quickmessage_summary">Wyświetl pop-up Szybkiej Wiadomości dla przychodzących wiadomości</string>
+
+    <!-- Wake and unlock -->
+    <string name="pref_wake_unlock_title">Wybudź i odblokuj</string>
+    <string name="pref_wake_unlock_summary">Wybudź i odblokuj urządzenie przy nadejściu wiadomości (tylko niezabezpieczone ekrany blokady)</string>
+
+    <!-- Close all messages -->
+    <string name="pref_close_all_title">Zamknij wszystkie</string>
+    <string name="pref_close_all_summary">Przycisk Zamknij zamyka wszystkie wiadomości</string>
+
+    <!-- SMS TEMPLATES -->
+    <string name="prefs_templates_settings">Szablony SMS</string>
+
+    <!-- Manage SMS templates -->
+    <string name="pref_title_templates_manage">Szablony</string>
+    <string name="pref_summary_templates_manage">Zarządzaj swoimi szablonami wiadomości SMS</string>
+    <string name="template_explanation">Wstaw lub modyfikuj tekst szablonu i ewentualnie narysuj gest dla niego</string>
+    <string name="template_insert_hint">Wstaw tutaj tekst szablonu</string>
+    <string name="template_empty_text">Pole tekstu szablonu nie może być puste</string>
+    <string name="template_save">Zapisz</string>
+    <string name="template_ctx_menu_title">Akcje</string>
+    <string name="template_edit">Edytuj</string>
+    <string name="template_delete">Usuń</string>
+    <string name="template_list_title">Szablony</string>
+    <string name="template_new_title">Nowy szablon</string>
+    <string name="template_insert">Dodaj szablon</string>
+    <string name="template_gesture_draw">Narysuj gest w polu poniżej</string>
+    <string name="template_not_present_error">Brak zdefiniowanych szablonów</string>
+    <string name="template_not_present_error_title">Błąd</string>
+    <string name="template_select">Wybierz szablon</string>
+    <string name="template_confirm_dialog_title">Usunąć?</string>
+    <string name="gestures_already_present">Podobny gest jest już przypisany do innego szablonu</string>
+    <string name="select_template">Wybierz szablony</string>
+
+    <!-- Show gesture trace -->
+    <string name="pref_title_templates_show_gesture">Gest</string>
+    <string name="pref_summary_templates_show_gesture">Pokazuje ścieżkę gestu</string>
+
+    <!-- Gesture sensitivity -->
+    <string name="pref_title_template_gestures_sensitivity">Czułość gestu</string>
+
+    <!-- EXTRA SETTINGS -->
+    <string name="pref_extra_settings">Dodatkowe ustawienia</string>
+
+    <!-- Strip unicode -->
+    <string name="pref_title_unicode_stripping">Opuszczanie Unicode</string>
+    <string name="pref_unicode_stripping_leave_intact">Pozostawia znaki niezmienione</string>
+    <string name="pref_unicode_stripping_non_encodable">Opuszcza znaki niekodowalne</string>
+    <string name="pref_unicode_stripping_all">Opuszcza wszystkie znaki</string>
+
+    <!-- Full timestamps -->
+    <string name="pref_title_mms_full_timestamp">Pełna data</string>
+    <string name="pref_summary_mms_full_timestamp">Wyświetla pełną datę oraz czas w wiadomościach</string>
+
+    <!-- Original timestamps -->
+    <string name="pref_title_mms_use_sent_timestamp">Oryginalna data</string>
+    <string name="pref_summary_mms_use_sent_timestamp">Wyświetla datę wysłania zamiast daty odebrania wiadomości</string>
+
+    <!-- Soft keyboard type -->
+    <string name="pref_title_input_type">Typ klawiatury</string>
+    <string name="pref_keyboard_emoji">Wyświetla przycisk emotikon</string>
+    <string name="pref_keyboard_new_line">Wyświetla przycisk Enter</string>
+    <string name="pref_keyboard_unknown">Nieznane, proszę wybrać ponownie</string>
+
+    <!-- Settings item for boolean option for SMS Split Counter -->
+    <string name="pref_title_sms_split_counter">Licznik podziału</string>
+    <!-- Settings item description for boolean SMS Split 160 characters setting -->
+    <string name="pref_summary_sms_split_counter">Dodaje licznik do wiadomości, np.: (1/2)</string>
+
+
+</resources>
