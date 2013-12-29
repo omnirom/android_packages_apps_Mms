@@ -40,6 +40,7 @@
     <color name="widget_subject_text_color_unread">#555555</color>
 
     <color name="translucent_white">#ccffffff</color>
+    <color name="date_view_background">#00000000</color>
 
     <color name="banner_item_transparent">#00000000</color>
     <color name="banner_item_activated">#670099cc</color>
