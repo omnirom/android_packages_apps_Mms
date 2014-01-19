@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Message options - Add SMS to calendar -->
+    <string name="menu_add_to_calendar">Προσθήκη στο ημερολόγιο</string>
+
+    <!-- QM - Dialog box buttons -->
+    <string name="button_close">Κλείσιμο</string>
+    <string name="button_view">Εμφάνιση</string>
+    <string name="button_templates">Πρότυπα</string>
+
+    <!-- QM - Hint text in message body field when keyboard is exposed -->
+    <string name="type_to_reply_text_enter_to_send">Πληκτρολογήστε για απάντηση</string>
+
+    <!-- QM - Toast -->
+    <string name="toast_sending_message">Αποστολή μηνύματος</string>
+
+    <!-- QM - Quick reply -->
+    <string name="qm_quick_reply">Απάντηση</string>
+    <string name="qm_mark_read">Ανάγνωση</string>
+
+    <!-- QM - Counter separator -->
+    <string name="message_counter_separator">από</string>
+
+    <!-- NOTIFICATIONS -->
+    <!-- Privacy mode -->
+    <string name="pref_title_notification_privacy_mode_enabled">Ιδιωτική λειτουργία</string>
+    <string name="pref_summary_notification_privacy_mode_enabled">Απόκρυψη αποστολέα και μηνύματος στη μπάρα κατάστασης και απενεργοποίηση \'Γρήγορης απάντησης\'</string>
+    <string name="notification_single_title_privacy_mode">Νέο μήνυμα</string>
+    <string name="notification_single_text_privacy_mode">1 αδιάβστο μήνυμα</string>
+    <string name="notification_multiple_title_privacy_mode">Νέα μηνύματα</string>
+    <string name="notification_multiple_text_privacy_mode"><xliff:g id="number" example="3">%1$s</xliff:g> αδιάβαστα μηνύματα</string>
+    <string name="notification_ticker_privacy_mode">Λήφθηκε νέο μήνυμα</string>
+
+    <!-- QUICKMESSAGE -->
+    <string name="pref_quickmessage">Γρήγορη απάντηση</string>
+
+    <!-- Use dark theme -->
+    <string name="pref_dark_theme_title">Χρήση σκούρου θέματος</string>
+    <string name="pref_dark_theme_summary">Εαν δεν είναι επιλεγμένο, θα χρησιμοποιηθεί το βασικό \'ανοικτόχρωμο\' θέμα</string>
+
+    <!-- Show pop-up -->
+    <string name="pref_quickmessage_title">Εμφάνιση αναδυόμενου</string>
+    <string name="pref_quickmessage_summary">Εμφάνιση ανδυόμενου Γρήγορου Μηνύματος για εισερχόμενα SMS</string>
+
+    <!-- Wake and unlock -->
+    <string name="pref_wake_unlock_title">Αφύπνιση και ξεκλείδωμα</string>
+    <string name="pref_wake_unlock_summary">Αφύπνιση και ξεκλείδωμα συσκευής κατά τη λήψη εισερχόμεου μηνύματος (μόνο για μη ασφαλείς οθόνες κλειδώματος)</string>
+
+    <!-- Close all messages -->
+    <string name="pref_close_all_title">Κλείσιμο όλων</string>
+    <string name="pref_close_all_summary">Το πλήκτρο κλεισίματος κλείνει όλα τα μηνύματα</string>
+
+    <!-- SMS TEMPLATES -->
+    <string name="prefs_templates_settings">Πρότυπα SMS</string>
+
+    <!-- Manage SMS templates -->
+    <string name="pref_title_templates_manage">Πρότυπα</string>
+    <string name="pref_summary_templates_manage">Διαχείριση προτύπων SMS</string>
+    <string name="template_explanation">Εισαγωγή ή τροποποίηση του προτύπου και προαιρετικός ορισμός συνδεδεμένης χειρονομίας</string>
+    <string name="template_insert_hint">Εισάγετε εδώ το κείμενο του προτύπου</string>
+    <string name="template_empty_text">Το πεδίο κειμένου δεν μπορεί να είναι κενό</string>
+    <string name="template_save">Αποθήκευση</string>
+    <string name="template_ctx_menu_title">Ενέργειες</string>
+    <string name="template_edit">Επεξεργασία</string>
+    <string name="template_delete">Διαγραφή</string>
+    <string name="template_list_title">Πρότυπα</string>
+    <string name="template_new_title">Νέο πρότυπο</string>
+    <string name="template_insert">Εισαγωγή προτύπου</string>
+    <string name="template_gesture_draw">Σχεδιάστε τη χειρονομία στον πιο κάτω χώρο</string>
+    <string name="template_not_present_error">Δεν έχουν οριστεί πρότυπα</string>
+    <string name="template_not_present_error_title">Λάθος</string>
+    <string name="template_select">Επιλέξτε πρότυπο</string>
+    <string name="template_confirm_dialog_title">Διαγραφή;</string>
+    <string name="gestures_already_present">Μία παρόμοια χειρονομία είναι ήδη συνδεδεμένη με ένα άλλο πρότυπο</string>
+    <string name="select_template">Επιλογή προτύπων</string>
+
+    <!-- Show gesture trace -->
+    <string name="pref_title_templates_show_gesture">Χειρονομία</string>
+    <string name="pref_summary_templates_show_gesture">Εμφάνιση ίχνους χειρονομίας</string>
+
+    <!-- Gesture sensitivity -->
+    <string name="pref_title_template_gestures_sensitivity">Ακρίβεια χειρονομίας</string>
+
+    <!-- EXTRA SETTINGS -->
+    <string name="pref_extra_settings">Πρόσθετες ρυθμίσεις</string>
+
+    <!-- Strip unicode -->
+    <string name="pref_title_unicode_stripping">Απογύμνωση unicode</string>
+    <string name="pref_unicode_stripping_leave_intact">Χαρακτήρες άθικτοι</string>
+    <string name="pref_unicode_stripping_non_encodable">Απογύμνωση μη κωδικοποιούμενων χαρακτήρων</string>
+    <string name="pref_unicode_stripping_all">Απογύμνωση όλων των unicode χαρακτήρων</string>
+
+    <!-- Full timestamps -->
+    <string name="pref_title_mms_full_timestamp">Πλήρεις χρονοσημάνσεις</string>
+    <string name="pref_summary_mms_full_timestamp">Εμφάνιση ημερομηνίας και ώρας στις χρονοσημάνσεις</string>
+
+    <!-- Original timestamps -->
+    <string name="pref_title_mms_use_sent_timestamp">Πρωτότυπες χρονοσημάνσεις</string>
+    <string name="pref_summary_mms_use_sent_timestamp">Εμφάνιση ημερομηνίας αποστολής αντί ημερομηνίας λήψης στις χρονοσημάνσεις</string>
+
+    <!-- Soft keyboard type -->
+    <string name="pref_title_input_type">Τύπος πληκτρολογίου</string>
+    <string name="pref_keyboard_emoji">Εμφάνιση πλήκτρου Emoticons</string>
+    <string name="pref_keyboard_new_line">Εμφάνιση πλήκτρου Enter</string>
+    <string name="pref_keyboard_unknown">Άγνωστο, παρακαλώ επιλέξτε ξανά</string>
+
+    <!-- Settings item for boolean option for SMS Split Counter -->
+    <string name="pref_title_sms_split_counter">Μετρητής διαχωρισμού</string>
+    <!-- Settings item description for boolean SMS Split 160 characters setting -->
+    <string name="pref_summary_sms_split_counter">Προσθέτει μετρητή στο μήνυμα παρ. (1/2)</string>
+
+</resources>
