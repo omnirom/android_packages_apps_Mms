@@ -241,5 +241,12 @@
             android:title="@string/pref_title_input_type"
             android:entries="@array/pref_entries_input_type"
             android:entryValues="@array/pref_values_input_type" />
+
+        <CheckBoxPreference
+            android:key="pref_key_mms_enter_new_line"
+            android:title="@string/pref_title_mms_enter_new_line"
+            android:summary="@string/pref_summary_mms_enter_new_line"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 </PreferenceScreen>
