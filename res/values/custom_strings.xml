@@ -19,4 +19,9 @@
     <string name="no_recipients">No contacts</string>
     <string name="hint_findContacts">Find contacts</string>
 
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_action">Enter key behaviour</string>
+    <string name="pref_mms_enter_new_line">Force newline</string>
+    <string name="pref_mms_enter_default">Default</string>
+
 </resources>
