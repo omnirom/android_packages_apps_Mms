@@ -19,4 +19,8 @@
     <string name="no_recipients">Keine Kontakte</string>
     <string name="hint_findContacts">Kontakte suchen</string>
 
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_new_line">Zeilenumbruch erzwingen</string>
+    <string name="pref_summary_mms_enter_new_line">Enter-Taste wird Zeilenumbruch hinzufügen</string>
+
 </resources>
