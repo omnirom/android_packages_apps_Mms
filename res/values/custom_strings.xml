@@ -12,6 +12,20 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
+     
+     Per article 5 of the Apache 2.0 License, some modifications to this code
+     were made by the OmniROM Project.
+
+     Modifications Copyright (C) 2013 The OmniROM Project
+ 
+     This program is free software; you can redistribute it and/or
+     modify it under the terms of the GNU General Public License
+     as published by the Free Software Foundation; either version 3
+     of the License, or (at your option) any later version.
+ 
+     You should have received a copy of the GNU General Public License
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="add_recipients">Add recipients</string>
@@ -19,4 +33,171 @@
     <string name="no_recipients">No contacts</string>
     <string name="hint_findContacts">Find contacts</string>
 
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_action">Enter key behaviour</string>
+    <string name="pref_mms_enter_new_line">Force newline</string>
+    <string name="pref_mms_enter_default">Default</string>
+
+    
+    <!-- Auto Response Settings -->
+
+    <!-- Application Strings -->
+    <string name="app_name_morse">Morse Code</string>
+    <string name="app_name_response">Auto Response</string>
+
+    <!-- Activity Titles -->
+
+    <string name="activity_messages_title">Away Messages</string>
+    <string name="activity_blacklist_title">Blacklist</string>
+    <string name="activity_whitelist_title">Whitelist</string>
+    <string name="activity_scheduling_title">Away Scheduling</string>
+
+    <!-- Preference Categories -->
+    <string name="pref_category_general">General Preferences</string>
+    <string name="pref_category_response">Response Preferences</string>
+
+    <!-- Service -->
+    <string name="pref_service_title">Start Auto Response</string>
+
+    <!-- Silent -->
+    <string name="pref_silent_title">Mute on Start</string>
+    <string name="pref_silent_summary">Mutes all sounds except media &amp; alarms on start</string>
+
+    <!-- Call/Text Preference -->
+    <string name="pref_call_text_title">Auto Respond to</string>
+    <string name="pref_call_text_summary">Select when to reply with auto response</string>
+    <string name="pref_call_text_type_1">Calls and Texts</string>
+    <string name="pref_call_text_type_2">Only Calls</string>
+    <string name="pref_call_text_type_3">Only Texts</string>
+
+    <!-- Message Select -->
+    <string name="pref_message_title">Response Messages</string>
+    <string name="pref_message_summary">Select which message to send out when a text is received.\nEdit from menu</string>
+
+    <!-- Filtering -->
+    <string name="pref_filtering_title">Recipient Filtering</string>
+    <string name="pref_filtering_summary">Blacklisting denies listed numbers from auto-responses.\nWhitelisting allows only the listed numbers for auto-responses.</string>
+    <string name="pref_filter_type_1">None</string>
+    <string name="pref_filter_type_2">Only Contacts</string>
+    <string name="pref_filter_type_3">Blacklist</string>
+    <string name="pref_filter_type_4">Whitelist</string>
+    <string name="pref_contacts_title">Contacts</string>
+    <string name="pref_contacts_multiple">Multiple Numbers</string>
+
+    <!-- Inform -->
+    <string name="pref_inform_title">Inform Recipient</string>
+    <string name="pref_inform_summary">Adds the [Auto Response]: prefix to your custom messages</string>
+
+    <!-- Response Delay -->
+    <string name="pref_delay_title">Response Delay</string>
+    <string name="pref_delay_summary">Delay duration for auto responses</string>
+    <string name="pref_delay_type_1">None</string>
+    <string name="pref_delay_type_2">15 seconds</string>
+    <string name="pref_delay_type_3">30 seconds</string>
+    <string name="pref_delay_type_4">1 minute</string>
+    <string name="pref_delay_type_5">2 minutes</string>
+    <string name="pref_delay_type_6">5 minutes</string>
+
+    <!-- Repeat -->
+    <string name="pref_repeat_title">Repeat Responses</string>
+    <string name="pref_repeat_summary">Repeat away message multiple times, to the same recipient, while running</string>
+
+    <!-- Menu Options -->
+    <string name="menu_add">Add</string>
+    <string name="menu_addToFilter">Add to Filter</string>
+    <string name="menu_cancel">Cancel</string>
+    <string name="menu_clear">Clear</string>
+    <string name="menu_close">Close</string>
+    <string name="menu_export">Export to Excel</string>
+    <string name="menu_no">No</string>
+    <string name="menu_remove">Remove</string>
+    <string name="menu_remove_all">Remove All</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_yes">Yes</string>
+    <string name="menu_main_messages">Edit Away Messages</string>
+    <string name="menu_main_filtering">Recipient Filtering</string>
+    <string name="menu_main_scheduling">Away Scheduling</string>
+    <string name="menu_messages_add">Add Response Message</string>
+    <string name="menu_messages_alphabetize">Alphabetize Messages</string>
+    <string name="menu_filter_addFromContacts">Add from Contacts</string>
+    <string name="menu_filter_addCustom">Add Number</string>
+    <string name="menu_schedules_add">Add Schedule</string>
+
+    <!-- Prompts -->
+
+    <string name="prompt_message_title">New Message</string>
+    <string name="prompt_message_title_title">Title</string>
+    <string name="prompt_message_title_content">Message</string>
+    <string name="prompt_message_saved">was successfully saved!</string>
+    <string name="prompt_filtering_title">Recipient Filtering is off!</string>
+    <string name="prompt_filtering_empty">Warning: Filtering is ON, but the filtering list is empty!</string>
+    <string name="prompt_error_message_exists">A message with that title exists!</string>
+    <string name="prompt_error_message_blank">Title and message cannot be blank!</string>
+    <string name="prompt_error_filter_number">Contact does not have a phone number.</string>
+    <string name="prompt_error_filter_exists">Contact already exists in the list.</string>
+    <string name="prompt_error_filter_blank">Name and number cannot be blank!</string>
+    <string name="prompt_error_filter_present">is already on the</string>
+    <string name="prompt_filter_title">New Contact</string>
+    <string name="prompt_filter_title_name">Name</string>
+    <string name="prompt_filter_title_number">Number</string>
+    <string name="prompt_filter_add">Please choose a filter</string>
+    <string name="prompt_added">Added Successfully!</string>
+    <string name="prompt_messages_alphabetized">Messages Alphabetized Successfully!</string>
+
+    <!-- Miscellaneous -->
+    <string name="default_message_title">Default Message</string>
+    <string name="default_message_content">Hey, I\'m busy, I\'ll text you later</string>
+    <string name="notification_ticker_start">Auto Response now running</string>
+    <string name="notification_ticker_replied">Auto replied to</string>
+    <string name="notification_content">Auto Response is currently running</string>
+    <string name="error_no_service">Failed to send Auto Response because of No Service!</string>
+    <string name="error_radio_off">Failed to send Auto Response because phone radio is off!</string>
+
+    <!-- Morse Settings -->
+    <!--  -->
+    <string name="app_receiver">EventReceiver</string>
+
+    <!-- Menu Items -->
+    <string name="menu_restore_defaults">Restore Defaults</string>
+    <string name="menu_about">About</string>
+
+    <!-- Preference Headers -->
+    <string name="preference_header_general">General Settings</string>
+    <string name="preference_header_rules">Rule Settings</string>
+    <string name="preference_header_input">Input Settings</string>
+
+    <!-- General Preferences -->
+    <string name="preference_enabled">enabled</string>
+    <string name="preference_enabled_title">Service Enabled</string>
+    <string name="preference_enabled_summary">Enable Morse code vibration for incoming SMS messages.</string>
+    <string name="preference_dot_length">dot_length</string>
+    <string name="preference_dot_length_title">Dot Length</string>
+    <string name="preference_dot_length_summary">Length (ms) of the Morse code dot.</string>
+    <string name="preference_vibrate_counts">vibrate_counts</string>
+    <string name="preference_vibrate_counts_title">Vibrate Number Counts</string>
+    <string name="preference_vibrate_counts_summary">Use counts to vibrate the sender number rather than Morse code representation.</string>
+    <string name="preference_lookup_contact_name">lookup_contact_name</string>
+    <string name="preference_lookup_contact_name_title">Lookup Contact Name</string>
+    <string name="preference_lookup_contact_name_summary">Use the contact name rather than just the number for "sender".</string>
+    <string name="preference_vibrate_parts">vibrate_parts</string>
+    <string name="preference_vibrate_parts_title">Vibrate Parts</string>
+    <string name="preference_vibrate_parts_summary">Currently:</string>
+    <string name="preference_vibrate_parts_dialog_title">Choose message part(s)</string>
+    <string name="preference_test">test</string>
+    <string name="preference_test_title">Test Vibrate</string>
+    <string name="preference_test_summary">Enter test message to test configuration.</string>
+
+    <!-- Rules Preferences -->
+    <string name="preference_screen_off_only">vibrate_when_screen_off_only</string>
+    <string name="preference_screen_off_only_title">Screen Off Only</string>
+    <string name="preference_screen_off_only_summary">Only vibrate when the screen is off or is locked.</string>
+    <string name="preference_vibrate_normal">vibrate_when_on_normal</string>
+    <string name="preference_vibrate_normal_title">Active On Normal</string>
+    <string name="preference_vibrate_normal_summary">Vibrate Morse code when the device ringer is on normal.</string>
+    <string name="preference_vibrate_vibrate">vibrate_when_on_vibrate</string>
+    <string name="preference_vibrate_vibrate_title">Active On Vibrate</string>
+    <string name="preference_vibrate_vibrate_summary">Vibrate Morse code when the device ringer is on vibrate.</string>
+    <string name="preference_vibrate_silent">vibrate_when_on_silent</string>
+    <string name="preference_vibrate_silent_title">Active On Silent</string>
+    <string name="preference_vibrate_silent_summary">Vibrate Morse code when the device ringer is on silent.</string>
 </resources>

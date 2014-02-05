@@ -16,6 +16,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Per article 5 of the Apache 2.0 License, some modifications to this code
+ * were made by the OmniROM Project.
+ *
+ * Modifications Copyright (C) 2013 The OmniROM Project
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,7 +55,20 @@
             android:targetPackage="com.android.settings">
         </intent>
     </Preference>
-
+    <PreferenceCategory
+        android:title="@string/pref_adv" >
+        
+        <Preference
+            android:key="link_to_auto"
+            android:title="@string/link_auto"
+            android:summary="@string/link_auto_sum" />
+        
+        <Preference
+            android:key="link_to_morse"
+            android:title="@string/link_morse"
+            android:summary="@string/link_morse_sum" />
+        
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_sms_storage_title"
         android:key="pref_key_storage_settings">
 <!--
@@ -241,5 +268,12 @@
             android:title="@string/pref_title_input_type"
             android:entries="@array/pref_entries_input_type"
             android:entryValues="@array/pref_values_input_type" />
+
+        <ListPreference
+            android:key="pref_key_mms_enter_action"
+            android:title="@string/pref_title_mms_enter_action"
+            android:entries="@array/pref_mms_enter_action_entries"
+            android:entryValues="@array/pref_mms_enter_action_values" />
+
     </PreferenceCategory>
 </PreferenceScreen>
