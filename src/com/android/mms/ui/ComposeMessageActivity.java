@@ -388,6 +388,9 @@ public class ComposeMessageActivity extends Activity
     public final static String THREAD_ID = "thread_id";
     private final static String RECIPIENTS = "recipients";
 
+    // Use the enter key to send the message (default: true)
+    private boolean mEnterToSend;
+
     @SuppressWarnings("unused")
     public static void log(String logMsg) {
         Thread current = Thread.currentThread();
@@ -1945,6 +1948,7 @@ public class ComposeMessageActivity extends Activity
                 MessagingPreferenceActivity.UNICODE_STRIPPING_LEAVE_INTACT);
         mInputMethod = Integer.parseInt(prefs.getString(MessagingPreferenceActivity.INPUT_TYPE,
                 Integer.toString(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE)));
+        mEnterToSend = prefs.getBoolean("pref_key_mms_enter_to_send", true); 
 
         mLibrary = TemplateGesturesLibrary.getStore(this);
 
@@ -3530,7 +3534,7 @@ public class ComposeMessageActivity extends Activity
         if (event != null) {
             // if shift key is down, then we want to insert the '\n' char in the TextView;
             // otherwise, the default action is to send the message.
-            if (!event.isShiftPressed() && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (!event.isShiftPressed() && event.getAction() == KeyEvent.ACTION_DOWN && mEnterToSend) {
                 if (isPreparedForSending()) {
                     confirmSendMessageIfNeeded();
                 }
