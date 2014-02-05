@@ -388,6 +388,9 @@ public class ComposeMessageActivity extends Activity
     public final static String THREAD_ID = "thread_id";
     private final static String RECIPIENTS = "recipients";
 
+    // Force the enter key to add a newline (default: false)
+    private int mEnterAction;
+
     @SuppressWarnings("unused")
     public static void log(String logMsg) {
         Thread current = Thread.currentThread();
@@ -1945,6 +1948,8 @@ public class ComposeMessageActivity extends Activity
                 MessagingPreferenceActivity.UNICODE_STRIPPING_LEAVE_INTACT);
         mInputMethod = Integer.parseInt(prefs.getString(MessagingPreferenceActivity.INPUT_TYPE,
                 Integer.toString(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE)));
+        mEnterAction = prefs.getInt(MessagingPreferenceActivity.ENTER_ACTION_VALUE, 
+                MessagingPreferenceActivity.ENTER_SEND);
 
         mLibrary = TemplateGesturesLibrary.getStore(this);
 
@@ -3530,7 +3535,9 @@ public class ComposeMessageActivity extends Activity
         if (event != null) {
             // if shift key is down, then we want to insert the '\n' char in the TextView;
             // otherwise, the default action is to send the message.
-            if (!event.isShiftPressed() && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (!event.isShiftPressed() && event.getAction() == KeyEvent.ACTION_DOWN && 
+                mEnterAction == MessagingPreferenceActivity.ENTER_SEND) {
+
                 if (isPreparedForSending()) {
                     confirmSendMessageIfNeeded();
                 }
