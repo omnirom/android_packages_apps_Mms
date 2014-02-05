@@ -1,0 +1,65 @@
+<!--
+  Copyright (C) 2013 The OmniROM Project
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/dialog_messagesTitle_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_message_title_title" />
+
+    <EditText
+        android:id="@+id/dialog_messagesTitleEdit_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_messagesTitle_add" />
+
+    <TextView
+        android:id="@+id/dialog_messagesContent_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_messagesTitleEdit_add"
+        android:text="@string/prompt_message_title_content" />
+
+    <EditText
+        android:id="@+id/dialog_messagesContentEdit_add"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_messagesContent_add"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/dialog_messagesButtonPositive_add"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_messagesContentEdit_add"
+        android:layout_toLeftOf="@+id/dialog_messagesButtonNegative_add"
+        android:text="@string/menu_add" />
+
+    <Button
+        android:id="@+id/dialog_messagesButtonNegative_add"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/dialog_messagesContentEdit_add"
+        android:text="@string/menu_cancel" />
+
+</RelativeLayout>
