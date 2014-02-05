@@ -19,4 +19,9 @@
     <string name="no_recipients">Keine Kontakte</string>
     <string name="hint_findContacts">Kontakte suchen</string>
 
+    <!-- Preferences -->
+    <string name="pref_title_mms_enter_action">Verhalten der Enter-Taste</string>
+    <string name="pref_mms_enter_new_line">Neue Zeile einfügen</string>
+    <string name="pref_mms_enter_send">Nachricht senden</string>
+
 </resources>

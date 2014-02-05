@@ -67,4 +67,15 @@
     </string-array>
 
 
+    <string-array name="pref_mms_enter_action_entries" translatable="false">
+        <item>@string/pref_mms_enter_new_line</item>
+        <item>@string/pref_mms_enter_send</item>
+    </string-array>
+
+    <string-array name="pref_mms_enter_action_values" translatable="false">
+        <item>0</item> <!-- MessagingPreferenceActivity.ENTER_NEW_LINE constant -->
+        <item>1</item> <!-- MessagingPreferenceActivity.ENTER_SEND constant -->
+    </string-array>
+
+
 </resources>
