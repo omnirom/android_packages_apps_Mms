@@ -92,7 +92,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     public static final String SENT_TIMESTAMP            = "pref_key_mms_use_sent_timestamp";
 
     // Privacy mode
-    public static final String PRIVACY_MODE_ENABLED = "pref_key_enable_privacy_mode";
+    public static final String PRIVACY_MODE_ENABLED      = "pref_key_enable_privacy_mode";
 
     // Keyboard input type
     public static final String INPUT_TYPE                = "pref_key_mms_input_type";
@@ -102,6 +102,12 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     public static final String QM_LOCKSCREEN_ENABLED     = "pref_key_qm_lockscreen";
     public static final String QM_CLOSE_ALL_ENABLED      = "pref_key_close_all";
     public static final String QM_DARK_THEME_ENABLED     = "pref_dark_theme";
+
+    // Enter key action
+    public static final String ENTER_ACTION              = "pref_key_mms_enter_action";
+    public static final String ENTER_ACTION_VALUE        = "pref_key_mms_enter_action_value";
+    public static final int ENTER_NEW_LINE               = 0;
+    public static final int ENTER_SEND                   = 1;
 
     // Menu entries
     private static final int MENU_RESTORE_DEFAULTS    = 1;
@@ -136,8 +142,12 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     // Templates
     private Preference mManageTemplate;
     private ListPreference mGestureSensitivity;
+
     private ListPreference mUnicodeStripping;
     private CharSequence[] mUnicodeStrippingEntries;
+
+    private ListPreference mEnterAction;
+    private CharSequence[] mEnterActionEntries;
 
     // Keyboard input type
     private ListPreference mInputTypePref;
@@ -229,6 +239,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mGestureSensitivity = (ListPreference) findPreference(GESTURE_SENSITIVITY);
         mUnicodeStripping = (ListPreference) findPreference(UNICODE_STRIPPING);
         mUnicodeStrippingEntries = getResources().getTextArray(R.array.pref_unicode_stripping_entries);
+        mEnterAction = (ListPreference) findPreference(ENTER_ACTION);
+        mEnterActionEntries = getResources().getTextArray(R.array.pref_mms_enter_action_entries);
 
         // QuickMessage
         mEnableQuickMessagePref = (CheckBoxPreference) findPreference(QUICKMESSAGE_ENABLED);
@@ -355,6 +367,19 @@ public class MessagingPreferenceActivity extends PreferenceActivity
                 int value = Integer.parseInt((String) newValue);
                 sharedPreferences.edit().putInt(UNICODE_STRIPPING_VALUE, value).commit();
                 mUnicodeStripping.setSummary(mUnicodeStrippingEntries[value]);
+                return true;
+            }
+        });
+
+        int enterAction = sharedPreferences.getInt(ENTER_ACTION_VALUE, ENTER_SEND);
+        mEnterAction.setValue(String.valueOf(enterAction));
+        mEnterAction.setSummary(mEnterActionEntries[enterAction]);
+        mEnterAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                int value = Integer.parseInt((String) newValue);
+                sharedPreferences.edit().putInt(ENTER_ACTION_VALUE, value).commit();
+                mEnterAction.setSummary(mEnterActionEntries[value]);
                 return true;
             }
         });
