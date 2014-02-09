@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Message options - Add SMS to calendar -->
+    <string name="menu_add_to_calendar">Afegeix al calendari</string>
+
+    <!-- QM - Dialog box buttons -->
+    <string name="button_close">Tanca</string>
+    <string name="button_view">Visualitza</string>
+    <string name="button_templates">Plantilles</string>
+
+    <!-- QM - Hint text in message body field when keyboard is exposed -->
+    <string name="type_to_reply_text_enter_to_send">Escriviu per respondre</string>
+
+    <!-- QM - Toast -->
+    <string name="toast_sending_message">S\'està enviant el missatge</string>
+
+    <!-- QM - Quick reply -->
+    <string name="qm_quick_reply">Respon</string>
+    <string name="qm_mark_read">Llegeix</string>
+
+    <!-- QM - Counter separator -->
+    <string name="message_counter_separator">de</string>
+
+    <!-- NOTIFICATIONS -->
+    <!-- Privacy mode -->
+    <string name="pref_title_notification_privacy_mode_enabled">Mode de privacitat</string>
+    <string name="pref_summary_notification_privacy_mode_enabled">Oculta el remitent i el missatge a la barra d\'estat i inhabilita la \'Resposta ràpida\'</string>
+    <string name="notification_single_title_privacy_mode">Missatge nou</string>
+    <string name="notification_single_text_privacy_mode">1 missatge no llegit</string>
+    <string name="notification_multiple_title_privacy_mode">Missatges nous</string>
+    <string name="notification_multiple_text_privacy_mode"><xliff:g id="number" example="3">%1$s</xliff:g> missatges no llegits</string>
+    <string name="notification_ticker_privacy_mode">S\'ha rebut un missatge nou</string>
+
+    <!-- QUICKMESSAGE -->
+    <string name="pref_quickmessage">Resposta ràpida</string>
+
+    <!-- Use dark theme -->
+    <string name="pref_dark_theme_title">Utilitza el tema fosc</string>
+    <string name="pref_dark_theme_summary">Si no es selecciona, s\'utilitzarà el tema \'clar\' per defecte</string>
+
+    <!-- Show pop-up -->
+    <string name="pref_quickmessage_title">Mostra un emergent</string>
+    <string name="pref_quickmessage_summary">Mostra l\'emergent de missatge ràpid per als missatges SMS d\'entrada</string>
+
+    <!-- Wake and unlock -->
+    <string name="pref_wake_unlock_title">Desperta i desbloqueja</string>
+    <string name="pref_wake_unlock_summary">Desperta i desbloqueja el dispositiu en entrar un missatge (només per a bloquejos de pantalla no segurs)</string>
+
+    <!-- Close all messages -->
+    <string name="pref_close_all_title">Tanca-ho tot</string>
+    <string name="pref_close_all_summary">El botó de tancament tanca tots els missatges</string>
+
+    <!-- SMS TEMPLATES -->
+    <string name="prefs_templates_settings">Plantilles d\'SMS</string>
+
+    <!-- Manage SMS templates -->
+    <string name="pref_title_templates_manage">Plantilles</string>
+    <string name="pref_summary_templates_manage">Gestioneu les plantilles d\'SMS</string>
+    <string name="template_explanation">Inseriu o modifiqueu el text de la plantilla i dibuixeu opcionalment un gest per associar-l\'hi</string>
+    <string name="template_insert_hint">Inseriu aquí el text de la plantilla</string>
+    <string name="template_empty_text">El camp de text no pot estar buit</string>
+    <string name="template_save">Desa</string>
+    <string name="template_ctx_menu_title">Accions</string>
+    <string name="template_edit">Edita</string>
+    <string name="template_delete">Suprimeix</string>
+    <string name="template_list_title">Plantilles</string>
+    <string name="template_new_title">Plantilla nova</string>
+    <string name="template_insert">Insereix una plantilla</string>
+    <string name="template_gesture_draw">Dibuixeu el gest a l\'espai de sota</string>
+    <string name="template_not_present_error">No s\'ha definit cap plantilla</string>
+    <string name="template_not_present_error_title">Error</string>
+    <string name="template_select">Seleccioneu una plantilla</string>
+    <string name="template_confirm_dialog_title">S\'ha de suprimir?</string>
+    <string name="gestures_already_present">Ja hi ha un gest semblant associat amb una altra plantilla</string>
+    <string name="select_template">Selecció de plantilles</string>
+
+    <!-- Show gesture trace -->
+    <string name="pref_title_templates_show_gesture">Gest</string>
+    <string name="pref_summary_templates_show_gesture">Mostra la traça del gest</string>
+
+    <!-- Gesture sensitivity -->
+    <string name="pref_title_template_gestures_sensitivity">Sensibilitat del gest</string>
+
+    <!-- EXTRA SETTINGS -->
+    <string name="pref_extra_settings">Configuració addicional</string>
+
+    <!-- Strip unicode -->
+    <string name="pref_title_unicode_stripping">Treu l\'Unicode</string>
+    <string name="pref_unicode_stripping_leave_intact">Deixa els caràcters intactes</string>
+    <string name="pref_unicode_stripping_non_encodable">Treu els caràcters no codificables</string>
+    <string name="pref_unicode_stripping_all">Treu tots els caràcters Unicode</string>
+
+    <!-- Full timestamps -->
+    <string name="pref_title_mms_full_timestamp">Marques horàries completes</string>
+    <string name="pref_summary_mms_full_timestamp">Mostra tant l\'hora com el dia a les marques horàries</string>
+
+    <!-- Original timestamps -->
+    <string name="pref_title_mms_use_sent_timestamp">Marques horàries originals</string>
+    <string name="pref_summary_mms_use_sent_timestamp">Mostra la data d\'enviament en lloc de la data de recepció a les marques horàries</string>
+
+    <!-- Soft keyboard type -->
+    <string name="pref_title_input_type">Tipus de teclat virtual</string>
+    <string name="pref_keyboard_emoji">Mostra la tecla d\'emoticones</string>
+    <string name="pref_keyboard_new_line">Mostra la tecla de retorn</string>
+    <string name="pref_keyboard_unknown">Desconegut, torneu a seleccionar</string>
+
+    <!-- Settings item for boolean option for SMS Split Counter -->
+    <string name="pref_title_sms_split_counter">Comptador de divisió</string>
+    <!-- Settings item description for boolean SMS Split 160 characters setting -->
+    <string name="pref_summary_sms_split_counter">Afegeix un comptador al missatge del tipus (1/2)</string>
+
+
+</resources>
