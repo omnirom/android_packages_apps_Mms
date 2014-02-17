@@ -13,10 +13,25 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * 
+ * Per article 5 of the Apache 2.0 License, some modifications to this code
+ * were made by the OmniROM Project.
+ *
+ * Modifications Copyright (C) 2013 The OmniROM Project
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 package com.android.mms.ui;
 
+import android.R;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,12 +47,12 @@ import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.provider.SearchRecentSuggestions;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -46,7 +61,8 @@ import android.view.MenuItem;
 
 import com.android.mms.MmsApp;
 import com.android.mms.MmsConfig;
-import com.android.mms.R;
+import com.android.mms.morse.ui.MorsePreferences;
+import com.android.mms.response.ui.ResponsePreferenceActivity;
 import com.android.mms.templates.TemplatesListActivity;
 import com.android.mms.transaction.TransactionService;
 import com.android.mms.util.Recycler;
@@ -92,7 +108,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     public static final String SENT_TIMESTAMP            = "pref_key_mms_use_sent_timestamp";
 
     // Privacy mode
-    public static final String PRIVACY_MODE_ENABLED      = "pref_key_enable_privacy_mode";
+    public static final String PRIVACY_MODE_ENABLED = "pref_key_enable_privacy_mode";
 
     // Keyboard input type
     public static final String INPUT_TYPE                = "pref_key_mms_input_type";
@@ -103,14 +119,12 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     public static final String QM_CLOSE_ALL_ENABLED      = "pref_key_close_all";
     public static final String QM_DARK_THEME_ENABLED     = "pref_dark_theme";
 
-    // Enter key action
-    public static final String ENTER_ACTION              = "pref_key_mms_enter_action";
-    public static final String ENTER_ACTION_VALUE        = "pref_key_mms_enter_action_value";
-    public static final int ENTER_DEFAULT                = 0;
-    public static final int ENTER_NEW_LINE               = 1;
-
+    // Advanced
+ 	public static final String LINK_AUTO = "link_to_auto";
+ 	public static final String LINK_MORSE = "link_to_morse";
+ 	
     // Menu entries
-    private static final int MENU_RESTORE_DEFAULTS       = 1;
+    private static final int MENU_RESTORE_DEFAULTS    = 1;
 
     // Preferences for enabling and disabling SMS
     private Preference mSmsDisabledPref;
@@ -142,12 +156,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     // Templates
     private Preference mManageTemplate;
     private ListPreference mGestureSensitivity;
-
     private ListPreference mUnicodeStripping;
     private CharSequence[] mUnicodeStrippingEntries;
-
-    private ListPreference mEnterAction;
-    private CharSequence[] mEnterActionEntries;
 
     // Keyboard input type
     private ListPreference mInputTypePref;
@@ -163,6 +173,10 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     private CheckBoxPreference mEnableQmLockscreenPref;
     private CheckBoxPreference mEnableQmCloseAllPref;
     private CheckBoxPreference mEnableQmDarkThemePref;
+    
+    // Advanced
+ 	private Preference mLinkAuto;
+ 	private Preference mLinkMorse;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -239,8 +253,6 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mGestureSensitivity = (ListPreference) findPreference(GESTURE_SENSITIVITY);
         mUnicodeStripping = (ListPreference) findPreference(UNICODE_STRIPPING);
         mUnicodeStrippingEntries = getResources().getTextArray(R.array.pref_unicode_stripping_entries);
-        mEnterAction = (ListPreference) findPreference(ENTER_ACTION);
-        mEnterActionEntries = getResources().getTextArray(R.array.pref_mms_enter_action_entries);
 
         // QuickMessage
         mEnableQuickMessagePref = (CheckBoxPreference) findPreference(QUICKMESSAGE_ENABLED);
@@ -253,6 +265,10 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mInputTypeEntries = getResources().getTextArray(R.array.pref_entries_input_type);
         mInputTypeValues = getResources().getTextArray(R.array.pref_values_input_type);
 
+        // Advanced
+     	mLinkAuto = (Preference) findPreference(LINK_AUTO);
+     	mLinkMorse = (Preference) findPreference(LINK_MORSE);
+     	
         setMessagePreferences();
     }
 
@@ -345,6 +361,30 @@ public class MessagingPreferenceActivity extends PreferenceActivity
             }
         });
 
+        // Advanced
+        
+        mLinkAuto
+		.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(MessagingPreferenceActivity.this,
+						ResponsePreferenceActivity.class);
+				startActivity(intent);
+				return false;
+			}
+		});
+		
+		mLinkMorse
+		.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(MessagingPreferenceActivity.this,
+						MorsePreferences.class);
+				startActivity(intent);
+				return false;
+			}
+		});
+		
         String gestureSensitivity = String.valueOf(sharedPreferences.getInt(GESTURE_SENSITIVITY_VALUE, 3));
         mGestureSensitivity.setSummary(gestureSensitivity);
         mGestureSensitivity.setValue(gestureSensitivity);
@@ -367,19 +407,6 @@ public class MessagingPreferenceActivity extends PreferenceActivity
                 int value = Integer.parseInt((String) newValue);
                 sharedPreferences.edit().putInt(UNICODE_STRIPPING_VALUE, value).commit();
                 mUnicodeStripping.setSummary(mUnicodeStrippingEntries[value]);
-                return true;
-            }
-        });
-
-        int enterAction = sharedPreferences.getInt(ENTER_ACTION_VALUE, ENTER_DEFAULT);
-        mEnterAction.setValue(String.valueOf(enterAction));
-        mEnterAction.setSummary(mEnterActionEntries[enterAction]);
-        mEnterAction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                int value = Integer.parseInt((String) newValue);
-                sharedPreferences.edit().putInt(ENTER_ACTION_VALUE, value).commit();
-                mEnterAction.setSummary(mEnterActionEntries[value]);
                 return true;
             }
         });
