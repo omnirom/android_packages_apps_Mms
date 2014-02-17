@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory
+		android:title="@string/pref_category_general">
+	
+		<CheckBoxPreference
+			android:title="@string/pref_service_title"
+			android:defaultValue="false"
+			android:key="serviceCheckBox" />
+		
+		<CheckBoxPreference
+			android:title="@string/pref_silent_title"
+			android:summary="@string/pref_silent_summary"
+			android:defaultValue="true"
+			android:key="silentCheckBox" />
+		
+		<ListPreference
+			android:title="@string/pref_call_text_title"
+			android:summary="@string/pref_call_text_summary"
+			android:defaultValue="0"
+			android:key="callTextListPref" />
+			
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+		android:title="@string/pref_category_response">
+
+		<ListPreference
+			android:title="@string/pref_message_title"
+			android:summary="@string/pref_message_summary"
+			android:defaultValue="@string/default_message_content"
+			android:key="messageListPref" />
+			
+		<ListPreference
+			android:title="@string/pref_filtering_title"
+			android:summary="@string/pref_filtering_summary"
+			android:defaultValue="0"
+			android:key="filteringListPref" />
+
+		<CheckBoxPreference
+			android:title="@string/pref_inform_title"
+			android:summary="@string/pref_inform_summary"
+			android:defaultValue="true"
+			android:key="informCheckBox" />
+
+		<ListPreference
+			android:title="@string/pref_delay_title"
+			android:summary="@string/pref_delay_summary"
+			android:defaultValue="0"
+			android:key="delayListPref" />
+			
+		<CheckBoxPreference
+			android:title="@string/pref_repeat_title"
+			android:summary="@string/pref_repeat_summary"
+			android:defaultValue="false"
+			android:key="repeatCheckBox" />
+
+	</PreferenceCategory>
+	
+</PreferenceScreen>
