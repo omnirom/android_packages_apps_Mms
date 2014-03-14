@@ -19,6 +19,10 @@
     <string name="no_recipients">No contacts</string>
     <string name="hint_findContacts">Find contacts</string>
 
+    <!-- Smart Call -->
+    <string name="smart_call_title">Smart phone call</string>
+    <string name="smart_call_summary">Put on your ear, and this will automatically dial number current contact of message</string>
+
     <!-- Preferences -->
     <string name="pref_title_mms_enter_action">Enter key behaviour</string>
     <string name="pref_mms_enter_new_line">Force newline</string>
