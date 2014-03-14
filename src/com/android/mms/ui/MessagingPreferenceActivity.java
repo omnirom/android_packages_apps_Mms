@@ -39,6 +39,7 @@ import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.provider.SearchRecentSuggestions;
+import android.provider.Settings;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -95,6 +96,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     // Privacy mode
     public static final String PRIVACY_MODE_ENABLED      = "pref_key_enable_privacy_mode";
 
+    public static final String SMART_DIALER_ENABLED = "pref_key_mms_smart_dialer";
+
     // Keyboard input type
     public static final String INPUT_TYPE                = "pref_key_mms_input_type";
 
@@ -142,6 +145,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     private CheckBoxPreference mEnableNotificationsPref;
     private CheckBoxPreference mEnablePrivacyModePref;
     private CheckBoxPreference mMmsAutoRetrievialPref;
+    private CheckBoxPreference mSmartCall;
     private RingtonePreference mRingtonePref;
     private Recycler mSmsRecycler;
     private Recycler mMmsRecycler;
@@ -228,6 +232,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mSmsPrefCategory.setEnabled(mIsSmsEnabled);
         mMmsPrefCategory.setEnabled(mIsSmsEnabled);
         mNotificationPrefCategory.setEnabled(mIsSmsEnabled);
+        mSmartCall.setEnabled(mIsSmsEnabled);
     }
 
     private void loadPrefs() {
@@ -254,6 +259,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mEnableNotificationsPref = (CheckBoxPreference) findPreference(NOTIFICATION_ENABLED);
         mMmsAutoRetrievialPref = (CheckBoxPreference) findPreference(AUTO_RETRIEVAL);
         mEnablePrivacyModePref = (CheckBoxPreference) findPreference(PRIVACY_MODE_ENABLED);
+        mSmartCall = (CheckBoxPreference) findPreference(SMART_DIALER_ENABLED);
         mVibratePref = (CheckBoxPreference) findPreference(NOTIFICATION_VIBRATE);
         mRingtonePref = (RingtonePreference) findPreference(NOTIFICATION_RINGTONE);
 
@@ -349,6 +355,9 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         setEnabledQmLockscreenPref();
         setEnabledQmCloseAllPref();
         setEnabledQmDarkThemePref();
+
+        // smart dialer
+        setEnabledSmartCallPref();
 
         // If needed, migrate vibration setting from the previous tri-state setting stored in
         // NOTIFICATION_VIBRATE_WHEN to the boolean setting stored in NOTIFICATION_VIBRATE.
@@ -466,6 +475,11 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         mEnableQmDarkThemePref.setEnabled(!isPrivacyModeEnabled);
     }
 
+    private void setEnabledSmartCallPref() {
+        boolean isSmartCallEnabled = getSmartCallEnabled(this);
+        mSmartCall.setChecked(isSmartCallEnabled);
+    }
+
     private void setEnabledQuickMessagePref() {
         // The "enable quickmessage" setting is really stored in our own prefs. Read the
         // current value and set the checkbox to match.
@@ -566,7 +580,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
 
             // Update "enable dark theme" checkbox state
             mEnableQmDarkThemePref.setEnabled(!mEnablePrivacyModePref.isChecked());
-
+        } else if (preference == mSmartCall) {
+            enableSmartDialer(mSmartCall.isChecked(), this);
         } else if (preference == mEnableQuickMessagePref) {
             // Update the actual "enable quickmessage" value that is stored in secure settings.
             enableQuickMessage(mEnableQuickMessagePref.isChecked(), this);
@@ -672,6 +687,11 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         editor.apply();
     }
 
+    public static void enableSmartDialer(boolean enabled, Context context) {
+        Settings.System.putInt(context.getContentResolver(),
+                 Settings.System.SMART_MMS_CALLER, enabled ? 1 : 0);
+    }
+
     public static boolean getQuickMessageEnabled(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean quickMessageEnabled =
@@ -727,6 +747,13 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         boolean qmDarkThemeEnabled =
             prefs.getBoolean(MessagingPreferenceActivity.QM_DARK_THEME_ENABLED, false);
         return qmDarkThemeEnabled;
+    }
+
+    public static boolean getSmartCallEnabled(Context context) {
+        int enabled = Settings.System.getInt(context.getContentResolver(),
+                 Settings.System.SMART_MMS_CALLER, 0);
+        boolean smartCallEnabled = (enabled != 0);
+        return smartCallEnabled;
     }
 
     private void registerListeners() {
