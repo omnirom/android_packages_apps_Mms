@@ -218,6 +218,12 @@
     <!-- Extra Settings -->
     <PreferenceCategory android:title="@string/pref_extra_settings">
 
+        <CheckBoxPreference
+            android:key="pref_key_smart_call"
+            android:title="@string/smart_call_title"
+            android:summary="@string/smart_call_summary" 
+            android:defaultValue="false" />
+
         <ListPreference
             android:key="pref_key_unicode_stripping"
             android:title="@string/pref_title_unicode_stripping"
