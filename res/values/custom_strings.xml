@@ -36,4 +36,8 @@
     <string name="send_delay_30seconds">30 seconds</string>
     <string name="sent_countdown">Message delivery countdown</string>
 
+    <!-- Smart Dialer -->
+    <string name="pref_title_mms_smart_dialer">Smart dialer</string>
+    <string name="pref_summary_mms_smart_dialer">Put on your ear, and this will automatically call current number in message</string>
+
 </resources>
