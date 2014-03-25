@@ -18,6 +18,8 @@
     <string name="groups_header">Groups</string>
     <string name="no_recipients">No contacts</string>
     <string name="hint_findContacts">Find contacts</string>
+    <string name="system_audio_item">System audio</string>
+    <string name="external_audio_item">External audio</string>
 
     <!-- Preferences -->
     <string name="pref_title_mms_enter_action">Enter key behaviour</string>
