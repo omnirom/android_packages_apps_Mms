@@ -561,6 +561,17 @@ public class ComposeMessageActivity extends Activity
         return true;
     }
 
+    private boolean showDeliveryReport(MessageItem msgItem) {
+        String report = MessageUtils.getReportDetails(ComposeMessageActivity.this,
+                msgItem.mMsgId, msgItem.mType);
+        new AlertDialog.Builder(ComposeMessageActivity.this)
+                .setTitle(R.string.delivery_header_title)
+                .setMessage(report)
+                .setCancelable(true)
+                .show();
+        return true;
+    }
+
     private final OnKeyListener mSubjectKeyListener = new OnKeyListener() {
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -1405,8 +1416,7 @@ public class ComposeMessageActivity extends Activity
                     return true;
                 }
                 case MENU_DELIVERY_REPORT:
-                    showDeliveryReport(mMsgItem.mMsgId, mMsgItem.mType);
-                    return true;
+                    return showDeliveryReport(mMsgItem);
 
                 case MENU_COPY_TO_SDCARD: {
                     int resId = copyMedia(mMsgItem.mMsgId) ? R.string.copy_to_sdcard_success :
@@ -1756,14 +1766,6 @@ public class ComposeMessageActivity extends Activity
             file = new File(base + "_" + i + "." + extension);
         }
         return file;
-    }
-
-    private void showDeliveryReport(long messageId, String type) {
-        Intent intent = new Intent(this, DeliveryReportActivity.class);
-        intent.putExtra("message_id", messageId);
-        intent.putExtra("message_type", type);
-
-        startActivity(intent);
     }
 
     private final IntentFilter mHttpProgressFilter = new IntentFilter(PROGRESS_STATUS_ACTION);
