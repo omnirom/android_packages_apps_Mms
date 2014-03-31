@@ -2201,8 +2201,9 @@ public class ComposeMessageActivity extends Activity
         // hide the compose panel to reduce jank when re-entering this activity.
         // if we don't hide it here, the compose panel will flash before the keyboard shows
         // (when keyboard is suppose to be shown).
-        hideBottomPanel();
-
+        if (!mForwardMessageMode){
+            hideBottomPanel();
+        }
         if (mWorkingMessage.isDiscarded()) {
             // If the message isn't worth saving, don't resurrect it. Doing so can lead to
             // a situation where a new incoming message gets the old thread id of the discarded

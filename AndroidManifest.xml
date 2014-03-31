@@ -172,7 +172,8 @@
 
         <activity android:name=".ui.AddRecipientsList"
             android:label="@string/add_recipients"
-            android:theme="@style/MmsHoloTheme">
+            android:theme="@style/MmsHoloTheme"
+            android:launchMode="singleTop" >
         </activity>
         <activity android:name=".ui.RecipientListActivity"
             android:theme="@style/MmsHoloTheme"
