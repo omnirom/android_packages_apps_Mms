@@ -144,4 +144,10 @@
     <string name="alert_dialog_yes">Yes</string>
     <string name="alert_dialog_no">No</string>
 
+    <!-- Mark as unread -->
+    <string name="menu_as_unread">Mark as unread</string>
+    <string name="confirm_mark_unread_dialog_title">Mark as unread?</string>
+    <string name="confirm_mark_unread_conversation">The conversation will be marked as unread.</string>
+    <string name="confirm_mark_unread_all_conversations">All threads will be marked as unread.</string>
+
 </resources>
