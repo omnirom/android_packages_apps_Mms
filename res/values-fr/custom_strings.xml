@@ -18,7 +18,17 @@
     <string name="groups_header">Groupes</string>
     <string name="no_recipients">Aucun contact trouvé</string>
     <string name="hint_findContacts">Trouver des contacts</string>
+    <string name="system_audio_item">Système audio</string>
+    <string name="external_audio_item">Audio externe</string>
     <string name="pref_title_mms_enter_action">Comportement de la touche Entrée</string>
     <string name="pref_mms_enter_new_line">Forcer une nouvelle ligne</string>
     <string name="pref_mms_enter_default">Défaut</string>
+    <string name="pref_title_send_delay">Délai d\'envoi</string>
+    <string name="send_delay_immediate">Envoi immédiat</string>
+    <string name="send_delay_3seconds">3 secondes</string>
+    <string name="send_delay_5seconds">5 secondes</string>
+    <string name="send_delay_10seconds">10 secondes</string>
+    <string name="send_delay_20seconds">20 secondes</string>
+    <string name="send_delay_30seconds">30 secondes</string>
+    <string name="sent_countdown">Décompte avant l\'envoi</string>
 </resources>
