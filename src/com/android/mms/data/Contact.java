@@ -80,6 +80,7 @@ public class Contact {
     private String mName;
     private String mNameAndNumber;   // for display, e.g. Fred Flintstone <670-782-1123>
     private boolean mNumberIsModified; // true if the number is modified
+    private String mLookupKey;
 
     private long mRecipientId;       // used to find the Recipient cache entry
     private String mLabel;
@@ -265,6 +266,10 @@ public class Contact {
 
     public synchronized String getNameAndNumber() {
         return mNameAndNumber;
+    }
+
+    public synchronized String getLookupKey() {
+        return mLookupKey;
     }
 
     private void notSynchronizedUpdateNameAndNumber() {
@@ -914,6 +919,7 @@ public class Contact {
                 contact.mContactMethodId = cursor.getLong(PHONE_ID_COLUMN);
                 contact.mLabel = cursor.getString(PHONE_LABEL_COLUMN);
                 contact.mName = cursor.getString(CONTACT_NAME_COLUMN);
+                contact.mLookupKey = cursor.getString(CONTACT_NAME_COLUMN); // TODO
                 contact.mPersonId = cursor.getLong(CONTACT_ID_COLUMN);
                 contact.mPresenceResId = getPresenceIconResourceId(
                         cursor.getInt(CONTACT_PRESENCE_COLUMN));
@@ -936,6 +942,7 @@ public class Contact {
         private void fillSelfContact(final Contact contact, final Cursor cursor) {
             synchronized (contact) {
                 contact.mName = cursor.getString(SELF_NAME_COLUMN);
+                contact.mLookupKey = cursor.getString(SELF_NAME_COLUMN); // TODO
                 if (TextUtils.isEmpty(contact.mName)) {
                     contact.mName = mContext.getString(R.string.messagelist_sender_self);
                 }
