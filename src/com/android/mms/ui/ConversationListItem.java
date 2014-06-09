@@ -40,6 +40,10 @@ import com.android.mms.data.Contact;
 import com.android.mms.data.ContactList;
 import com.android.mms.data.Conversation;
 
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.ContactPhotoManager.LetterTileDefaultImageProvider;
+
 /**
  * This class manages the view for given conversation.
  */
@@ -140,12 +144,20 @@ public class ConversationListItem extends RelativeLayout implements Contact.Upda
         Drawable avatarDrawable;
         if (mConversation.getRecipients().size() == 1) {
             Contact contact = mConversation.getRecipients().get(0);
-            avatarDrawable = contact.getAvatar(mContext, sDefaultContactImage);
+            avatarDrawable = contact.getAvatar(mContext, null);
 
             if (contact.existsInDatabase()) {
                 mAvatarView.assignContactUri(contact.getUri());
             } else {
                 mAvatarView.assignContactFromPhone(contact.getNumber(), true);
+            }
+
+            if (avatarDrawable == null) {
+                // (Alternative: ContactPhotoManager.TYPE_PERSON - need to try out)
+                DefaultImageRequest defaultImageRequest = new DefaultImageRequest(
+                    contact.getName(),ContactPhotoManager.TYPE_DEFAULT);
+                avatarDrawable = LetterTileDefaultImageProvider.getDefaultImageForContact(
+                    mContext.getResources(),defaultImageRequest);
             }
         } else {
             // TODO get a multiple recipients asset (or do something else)
