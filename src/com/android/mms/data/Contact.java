@@ -80,6 +80,7 @@ public class Contact {
     private String mName;
     private String mNameAndNumber;   // for display, e.g. Fred Flintstone <670-782-1123>
     private boolean mNumberIsModified; // true if the number is modified
+    private String mLookupKey;
 
     private long mRecipientId;       // used to find the Recipient cache entry
     private String mLabel;
@@ -267,6 +268,10 @@ public class Contact {
         return mNameAndNumber;
     }
 
+    public synchronized String getLookupKey() {
+        return mLookupKey;
+    }
+
     private void notSynchronizedUpdateNameAndNumber() {
         mNameAndNumber = formatNameAndNumber(mName, mNumber, mNumberE164);
     }
@@ -424,7 +429,8 @@ public class Contact {
                 Phone.CONTACT_PRESENCE,         // 5
                 Phone.CONTACT_STATUS,           // 6
                 Phone.NORMALIZED_NUMBER,        // 7
-                Contacts.SEND_TO_VOICEMAIL      // 8
+                Contacts.SEND_TO_VOICEMAIL,     // 8
+                Contacts.LOOKUP_KEY             // 9
         };
 
         private static final int PHONE_ID_COLUMN = 0;
@@ -436,14 +442,17 @@ public class Contact {
         private static final int CONTACT_STATUS_COLUMN = 6;
         private static final int PHONE_NORMALIZED_NUMBER = 7;
         private static final int SEND_TO_VOICEMAIL = 8;
+        private static final int CONTACT_LOOKUP_KEY_COLUMN = 9;
 
         private static final String[] SELF_PROJECTION = new String[] {
                 Phone._ID,                      // 0
                 Phone.DISPLAY_NAME,             // 1
+                Contacts.LOOKUP_KEY             // 2
         };
 
         private static final int SELF_ID_COLUMN = 0;
         private static final int SELF_NAME_COLUMN = 1;
+        private static final int SELF_LOOKUP_KEY_COLUMN = 2;
 
         // query params for contact lookup by email
         private static final Uri EMAIL_WITH_PRESENCE_URI = Data.CONTENT_URI;
@@ -457,7 +466,8 @@ public class Contact {
                 Email.CONTACT_PRESENCE,       // 2
                 Email.CONTACT_ID,             // 3
                 Phone.DISPLAY_NAME,           // 4
-                Contacts.SEND_TO_VOICEMAIL    // 5
+                Contacts.SEND_TO_VOICEMAIL,   // 5
+                Contacts.LOOKUP_KEY           // 6
         };
         private static final int EMAIL_ID_COLUMN = 0;
         private static final int EMAIL_NAME_COLUMN = 1;
@@ -465,6 +475,7 @@ public class Contact {
         private static final int EMAIL_CONTACT_ID_COLUMN = 3;
         private static final int EMAIL_CONTACT_NAME_COLUMN = 4;
         private static final int EMAIL_SEND_TO_VOICEMAIL_COLUMN = 5;
+        private static final int EMAIL_LOOKUP_KEY_COLUMN = 6;
 
         private final Context mContext;
 
@@ -914,6 +925,7 @@ public class Contact {
                 contact.mContactMethodId = cursor.getLong(PHONE_ID_COLUMN);
                 contact.mLabel = cursor.getString(PHONE_LABEL_COLUMN);
                 contact.mName = cursor.getString(CONTACT_NAME_COLUMN);
+                contact.mLookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN);
                 contact.mPersonId = cursor.getLong(CONTACT_ID_COLUMN);
                 contact.mPresenceResId = getPresenceIconResourceId(
                         cursor.getInt(CONTACT_PRESENCE_COLUMN));
@@ -936,6 +948,7 @@ public class Contact {
         private void fillSelfContact(final Contact contact, final Cursor cursor) {
             synchronized (contact) {
                 contact.mName = cursor.getString(SELF_NAME_COLUMN);
+                contact.mLookupKey = cursor.getString(SELF_LOOKUP_KEY_COLUMN);
                 if (TextUtils.isEmpty(contact.mName)) {
                     contact.mName = mContext.getString(R.string.messagelist_sender_self);
                 }
@@ -1028,6 +1041,7 @@ public class Contact {
                             entry.mPresenceResId = getPresenceIconResourceId(
                                     cursor.getInt(EMAIL_STATUS_COLUMN));
                             entry.mPersonId = cursor.getLong(EMAIL_CONTACT_ID_COLUMN);
+                            entry.mLookupKey = cursor.getString(EMAIL_LOOKUP_KEY_COLUMN);
                             entry.mSendToVoicemail =
                                     cursor.getInt(EMAIL_SEND_TO_VOICEMAIL_COLUMN) == 1;
 

@@ -74,6 +74,9 @@ import com.android.mms.util.ThumbnailManager.ImageLoaded;
 import com.google.android.mms.ContentType;
 import com.google.android.mms.pdu.PduHeaders;
 
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+
 /**
  * This class provides view of a message in the messages list.
  */
@@ -283,7 +286,7 @@ public class MessageListItem extends LinearLayout implements
         Drawable avatarDrawable;
         if (isSelf || !TextUtils.isEmpty(addr)) {
             Contact contact = isSelf ? Contact.getMe(false) : Contact.get(addr, false);
-            avatarDrawable = contact.getAvatar(mContext, sDefaultContactImage);
+            avatarDrawable = contact.getAvatar(mContext, null);
 
             if (isSelf) {
                 mAvatar.assignContactUri(Profile.CONTENT_URI);
@@ -293,6 +296,13 @@ public class MessageListItem extends LinearLayout implements
                 } else {
                     mAvatar.assignContactFromPhone(contact.getNumber(), true);
                 }
+            }
+            if (avatarDrawable == null) {
+                DefaultImageRequest defaultImageRequest = new DefaultImageRequest(
+                    contact.getName(), contact.getLookupKey()+"");
+                // TODO: contact.getLookupKey() returns null.
+                avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    mContext.getResources(), false, defaultImageRequest);
             }
         } else {
             avatarDrawable = sDefaultContactImage;
