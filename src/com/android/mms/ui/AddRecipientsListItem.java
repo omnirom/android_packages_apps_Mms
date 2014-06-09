@@ -34,6 +34,9 @@ import com.android.mms.data.Contact;
 import com.android.mms.data.Group;
 import com.android.mms.data.PhoneNumber;
 
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+
 public class AddRecipientsListItem extends RelativeLayout implements Comparable<AddRecipientsListItem> {
     private static final String TAG = "AddRecipientsListItem";
 
@@ -128,14 +131,19 @@ public class AddRecipientsListItem extends RelativeLayout implements Comparable<
         Drawable avatarDrawable;
 
         Contact contact = mPhoneNumber.getContact();
-        avatarDrawable = contact.getAvatar(mContext, sDefaultContactImage);
+        avatarDrawable = contact.getAvatar(mContext, null);
 
         if (contact.existsInDatabase()) {
             mAvatarView.assignContactUri(contact.getUri());
         } else {
             mAvatarView.assignContactFromPhone(contact.getNumber(), true);
         }
-
+        if (avatarDrawable == null) {
+            DefaultImageRequest defaultImageRequest = new DefaultImageRequest(
+                    contact.getName(), contact.getLookupKey()+"");
+            avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    getContext().getResources(), false, defaultImageRequest);
+        }
         mAvatarView.setImageDrawable(avatarDrawable);
         mAvatarView.setVisibility(View.VISIBLE);
     }
