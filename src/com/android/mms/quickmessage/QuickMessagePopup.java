@@ -87,6 +87,8 @@ import com.google.android.mms.MmsException;
 //import com.android.mms.ui.ImageAdapter;
 //import com.android.mms.util.EmojiParser;
 //import com.android.mms.util.SmileyParser;
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 
 public class QuickMessagePopup extends Activity implements
     LoaderManager.LoaderCallbacks<Cursor> {
@@ -595,8 +597,14 @@ public class QuickMessagePopup extends Activity implements
         Drawable avatarDrawable;
         if (isSelf || !TextUtils.isEmpty(addr)) {
             Contact contact = isSelf ? Contact.getMe(false) : Contact.get(addr, false);
-            avatarDrawable = contact.getAvatar(mContext, mDefaultContactImage);
+            avatarDrawable = contact.getAvatar(mContext, null);
 
+            if (avatarDrawable == null) {
+                DefaultImageRequest defaultImageRequest = new DefaultImageRequest(
+                    contact.getName(), contact.getLookupKey()+"");
+                avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    mContext.getResources(), false, defaultImageRequest);
+            }
             if (isSelf) {
                 badge.assignContactUri(Profile.CONTENT_URI);
             } else {
