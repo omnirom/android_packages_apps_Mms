@@ -69,7 +69,8 @@
             android:layout_below="@id/separator"
             android:layout_toRightOf="@id/avatar"
             android:layout_alignWithParentIfMissing="true"
-            android:ellipsize="marquee" />
+            android:ellipsize="marquee"
+            android:textColor="@color/dialtacts_primary_text_color" />
 
         <TextView android:id="@+id/label"
             android:layout_height="wrap_content"
@@ -80,7 +81,8 @@
             android:textSize="12sp"
             android:singleLine="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/dialtacts_secondary_text_color" />
 
         <TextView android:id="@+id/number"
             android:layout_width="wrap_content"
@@ -92,7 +94,8 @@
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/avatar"
             android:layout_alignWithParentIfMissing="true"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:textColor="@color/dialtacts_secondary_text_color" />
 
         <TextView android:id="@+id/number_no_avatar"
             android:layout_width="wrap_content"
@@ -103,7 +106,8 @@
             android:layout_centerVertical="true"
             android:layout_alignWithParentIfMissing="true"
             android:ellipsize="end"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:textColor="@color/dialtacts_secondary_text_color"/>
 
         <CheckBox android:id="@+id/checkbox"
             android:layout_above="@id/label"
@@ -119,7 +123,7 @@
     <LinearLayout android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header" >
+        android:layout_below="@id/item" >
 
         <View android:id="@+id/separator_end"
             android:layout_width="match_parent"

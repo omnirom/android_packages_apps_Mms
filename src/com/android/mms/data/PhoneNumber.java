@@ -53,6 +53,7 @@ public class PhoneNumber {
     private long mContactId;          // The ID of the contact
     private ArrayList<Group> mGroups; // The groups of the contact
     private boolean mIsChecked;       // True if user has selected the phone
+    private Contact mContact;
 
     private PhoneNumber(Context context, long id, String number, int type, String label,
                       String name, boolean isDefault, boolean isFirst, long contactId, ArrayList<Group> groups, boolean isChecked) {
@@ -119,7 +120,16 @@ public class PhoneNumber {
     }
 
     public Contact getContact() {
-        return Contact.get(mNumber, false);
+        if (mContact == null){
+            return Contact.get(mNumber, true);
+        }
+        return mContact;
+    }
+
+    public void cacheContact() {
+        if (mContact == null) {
+            mContact = Contact.get(mNumber, false);
+        }
     }
 
     public ArrayList<Group> getGroups() {

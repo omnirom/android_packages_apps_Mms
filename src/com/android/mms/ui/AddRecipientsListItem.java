@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.os.Handler;
 
 import com.android.mms.LogTag;
 import com.android.mms.R;
@@ -34,7 +35,12 @@ import com.android.mms.data.Contact;
 import com.android.mms.data.Group;
 import com.android.mms.data.PhoneNumber;
 
-public class AddRecipientsListItem extends RelativeLayout implements Comparable<AddRecipientsListItem> {
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+
+public class AddRecipientsListItem extends RelativeLayout
+        implements Comparable<AddRecipientsListItem>,
+        Contact.UpdateListener {
     private static final String TAG = "AddRecipientsListItem";
 
     private LinearLayout mHeader;
@@ -47,11 +53,12 @@ public class AddRecipientsListItem extends RelativeLayout implements Comparable<
     private QuickContactBadge mAvatarView;
     private CheckBox mCheckBox;
 
-    static private Drawable sDefaultContactImage;
-
     private PhoneNumber mPhoneNumber;
     private Group mGroup;
     private java.text.Collator mCollator;
+
+    // For posting UI update Runnables from other threads:
+    private Handler mHandler = new Handler();
 
     public AddRecipientsListItem(Context context, PhoneNumber phoneNumber) {
         super(context);
@@ -60,6 +67,7 @@ public class AddRecipientsListItem extends RelativeLayout implements Comparable<
         mGroup = null;
         mCollator = java.text.Collator.getInstance();
         mCollator.setStrength(java.text.Collator.PRIMARY);
+        mPhoneNumber.cacheContact();
     }
 
     public AddRecipientsListItem(Context context, Group group) {
@@ -73,10 +81,6 @@ public class AddRecipientsListItem extends RelativeLayout implements Comparable<
 
     public AddRecipientsListItem(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        if (sDefaultContactImage == null) {
-            sDefaultContactImage = context.getResources().getDrawable(R.drawable.ic_contact_picture);
-        }
         mCollator = java.text.Collator.getInstance();
         mCollator.setStrength(java.text.Collator.PRIMARY);
     }
@@ -128,14 +132,19 @@ public class AddRecipientsListItem extends RelativeLayout implements Comparable<
         Drawable avatarDrawable;
 
         Contact contact = mPhoneNumber.getContact();
-        avatarDrawable = contact.getAvatar(mContext, sDefaultContactImage);
+        avatarDrawable = contact.getAvatar(mContext, null);
 
         if (contact.existsInDatabase()) {
             mAvatarView.assignContactUri(contact.getUri());
         } else {
             mAvatarView.assignContactFromPhone(contact.getNumber(), true);
         }
-
+        if (avatarDrawable == null) {
+            DefaultImageRequest defaultImageRequest = new DefaultImageRequest(
+                    contact.getName(), contact.getLookupKey()+"");
+            avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    getContext().getResources(), false, defaultImageRequest);
+        }
         mAvatarView.setImageDrawable(avatarDrawable);
         mAvatarView.setVisibility(View.VISIBLE);
     }
@@ -204,5 +213,13 @@ public class AddRecipientsListItem extends RelativeLayout implements Comparable<
         if (Log.isLoggable(LogTag.CONTACT, Log.DEBUG)) {
             Log.v(TAG, "unbind: contacts.removeListeners " + this);
         }
+    }
+
+    public void onUpdate(Contact updated) {
+        mHandler.post(new Runnable() {
+            public void run() {
+                updateAvatarView();
+            }
+        });
     }
 }

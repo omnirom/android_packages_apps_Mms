@@ -48,4 +48,7 @@
 
     <color name="text_shadow_color_light">#33000000</color>
     <color name="solid_white">#ffffffff</color>
+
+    <color name="dialtacts_primary_text_color">#000000</color>
+    <color name="dialtacts_secondary_text_color">#888888</color>
 </resources>
