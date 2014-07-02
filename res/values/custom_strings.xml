@@ -36,4 +36,8 @@
     <string name="send_delay_30seconds">30 seconds</string>
     <string name="sent_countdown">Message delivery countdown</string>
 
+    <!-- Heads up mode -->
+    <string name="pref_title_notification_heads_up_mode_enabled">Heads up mode</string>
+    <string name="pref_summary_notification_heads_up_mode_enabled">Show messages as heads up notification.</string>
+
 </resources>
