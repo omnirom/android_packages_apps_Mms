@@ -23,7 +23,11 @@
     android:id="@+id/msg_list_item_recv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/cardsui_padding_half"
+    android:paddingBottom="@dimen/cardsui_padding_half"
+    android:paddingLeft="@dimen/cardsui_padding_full"
+    android:paddingRight="@dimen/cardsui_padding_full">
 
     <LinearLayout android:id="@+id/mms_layout_view_parent"
         android:layout_width="match_parent"
