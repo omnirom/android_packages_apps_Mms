@@ -23,4 +23,9 @@ All Rights Reserved. -->
     <dimen name="banner_m_space">8dip</dimen>
 
     <dimen name="quick_message_width">300dp</dimen>
+
+    <!-- CardsUI item spacing -->
+    <dimen name="cardsui_padding_half">3dip</dimen>
+    <dimen name="cardsui_padding_full">6dip</dimen>
+
 </resources>
