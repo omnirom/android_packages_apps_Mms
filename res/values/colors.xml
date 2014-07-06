@@ -51,4 +51,8 @@
 
     <color name="dialtacts_primary_text_color">#000000</color>
     <color name="dialtacts_secondary_text_color">#888888</color>
+
+    <!-- Message list background -->
+    <color name="message_list_background">#ffdddddd</color>
+
 </resources>
