@@ -30,6 +30,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Checkable;
+import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -239,7 +240,7 @@ public class ConversationListItem extends RelativeLayout implements Contact.Upda
             backgroundId = R.drawable.conversation_item_background_read;
         }
         Drawable background = mContext.getResources().getDrawable(backgroundId);
-        setBackground(background);
+        ((LinearLayout) getParent()).setBackground(background);
     }
 
     public final void unbind() {
