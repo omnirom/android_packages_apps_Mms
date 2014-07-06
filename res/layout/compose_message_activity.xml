@@ -21,7 +21,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/list_background">
 
     <LinearLayout
         android:id="@+id/recipients_subject_linear"
@@ -73,7 +74,8 @@
             android:cacheColorHint="@android:color/white"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:scrollbarStyle="insideOverlay"
-            android:paddingBottom="@dimen/input_text_height_adjusted"
+            android:paddingTop="@dimen/cardsui_padding_half"
+            android:paddingBottom="@dimen/cardsui_padding_half"
         />
 
         <LinearLayout

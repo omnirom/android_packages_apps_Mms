@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
+import android.widget.LinearLayout;
 
 import com.android.mms.LogTag;
 import com.android.mms.R;
@@ -48,19 +49,20 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        if (!(view instanceof ConversationListItem)) {
+        final LinearLayout layout = (LinearLayout) view;
+        if (!(layout.getChildAt(0) instanceof ConversationListItem)) {
             Log.e(TAG, "Unexpected bound view: " + view);
             return;
         }
 
-        ConversationListItem headerView = (ConversationListItem) view;
+        ConversationListItem headerView = (ConversationListItem) layout.getChildAt(0);
         Conversation conv = Conversation.from(context, cursor);
         headerView.bind(context, conv);
     }
 
     public void onMovedToScrapHeap(View view) {
-        ConversationListItem headerView = (ConversationListItem)view;
-        headerView.unbind();
+        final LinearLayout layout = (LinearLayout) view;
+        ((ConversationListItem)layout.getChildAt(0)).unbind();
     }
 
     @Override
