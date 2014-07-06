@@ -31,8 +31,8 @@
     <color name="timestamp_color">#bf000000</color>
 
     <!-- the background color used for unread conversation -->
-    <color name="unread_bgcolor">#ffffffff</color>
-    <color name="read_bgcolor">#ffeeeeee</color>
+    <color name="unread_bgcolor">#ffeaeaea</color>
+    <color name="read_bgcolor">#ffffffff</color>
 
     <color name="widget_sender_text_color_read">#555555</color>
     <color name="widget_sender_text_color_unread">#333333</color>
@@ -51,4 +51,8 @@
 
     <color name="dialtacts_primary_text_color">#000000</color>
     <color name="dialtacts_secondary_text_color">#888888</color>
+
+    <!-- Message list background -->
+    <color name="list_background">#ffdddddd</color>
+
 </resources>
