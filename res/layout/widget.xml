@@ -33,14 +33,8 @@
         android:orientation="horizontal"
         android:paddingLeft="8dip"
         android:paddingRight="8dip"
-        android:background="@drawable/header_bg_mms_widget_holo"
+        android:background="#006600"
         android:gravity="center_vertical">
-        <ImageView
-            android:id="@+id/widget_icon"
-            android:layout_width="32dip"
-            android:layout_height="32dip"
-            android:layout_marginRight="8dip"
-            android:src="@mipmap/ic_launcher_smsmms" />
         <TextView
             android:id="@+id/widget_label"
             style="@style/WidgetTitle"
@@ -48,7 +42,8 @@
             android:layout_width="0dip"
             android:layout_weight = "1"
             android:layout_marginRight="8dip"
-            android:freezesText="true" />
+            android:freezesText="true"
+            android:textColor="#ffffff" />
         <!-- Note: We can't set "freezesText" on the widget_unread_count view, as the launcher can
              restore stale data over updated data. -->
         <TextView
@@ -78,5 +73,5 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/list_div_top_btm_mms_widget_holo" />
+        android:background="#006600" />
 </LinearLayout>
