@@ -30,6 +30,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Checkable;
+import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -222,9 +223,7 @@ public class ConversationListItem extends RelativeLayout implements Contact.Upda
 
     private void updateBackground() {
         int backgroundId;
-        if (mConversation.isChecked()) {
-            backgroundId = R.drawable.list_selected_holo_light;
-        } else if (mConversation.hasUnreadMessages()) {
+        if (mConversation.hasUnreadMessages()) {
             backgroundId = R.drawable.conversation_item_background_unread;
         } else {
             backgroundId = R.drawable.conversation_item_background_read;

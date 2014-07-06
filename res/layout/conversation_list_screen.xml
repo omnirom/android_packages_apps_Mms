@@ -18,7 +18,7 @@
  */
 -->
 
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"  >
@@ -30,9 +30,14 @@
         android:layout_below="@+id/banner_sms_promo"
         android:drawSelectorOnTop="false"
         android:scrollbarStyle="insideOverlay"
-        android:background="@android:color/white"
+        android:background="@color/list_background"
         android:cacheColorHint="@android:color/white"
-        android:fadingEdgeLength="16dip" />
+        android:fadingEdgeLength="16dip"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:paddingTop="@dimen/cardsui_padding_half"
+        android:paddingBottom="@dimen/cardsui_padding_half"
+        android:clipToPadding="false"/>
 
     <TextView android:id="@+id/empty"
         android:layout_width="match_parent"
