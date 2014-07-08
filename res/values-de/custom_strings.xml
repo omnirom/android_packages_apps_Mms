@@ -24,4 +24,14 @@
     <string name="pref_mms_enter_new_line">Neue Zeile erzwingen</string>
     <string name="pref_mms_enter_default">Standard</string>
 
+    <!-- Delay delivery -->
+    <string name="pref_title_send_delay">Sendeverzögerung</string>
+    <string name="send_delay_immediate">Sofort senden</string>
+    <string name="send_delay_3seconds">3 Sekunden</string>
+    <string name="send_delay_5seconds">5 Sekunden</string>
+    <string name="send_delay_10seconds">10 Sekunden</string>
+    <string name="send_delay_20seconds">20 Sekunden</string>
+    <string name="send_delay_30seconds">30 Sekunden</string>
+    <string name="sent_countdown">Countdown für Nachrichtenauslieferung</string>
+
 </resources>
