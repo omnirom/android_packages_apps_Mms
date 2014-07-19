@@ -107,7 +107,6 @@ public class MessageListItem extends LinearLayout implements
     private TextView mDateView;
     public View mMessageBlock;
     private QuickContactDivot mAvatar;
-    static private Drawable sDefaultContactImage;
     private Presenter mPresenter;
     private int mPosition;      // for debugging
     private ImageLoadedCallback mImageLoadedCallback;
@@ -116,10 +115,6 @@ public class MessageListItem extends LinearLayout implements
     public MessageListItem(Context context) {
         super(context);
         mDefaultCountryIso = MmsApp.getApplication().getCurrentCountryIso();
-
-        if (sDefaultContactImage == null) {
-            sDefaultContactImage = context.getResources().getDrawable(R.drawable.ic_contact_picture);
-        }
     }
 
     public MessageListItem(Context context, AttributeSet attrs) {
@@ -128,10 +123,6 @@ public class MessageListItem extends LinearLayout implements
         int color = mContext.getResources().getColor(R.color.timestamp_color);
         mColorSpan = new ForegroundColorSpan(color);
         mDefaultCountryIso = MmsApp.getApplication().getCurrentCountryIso();
-
-        if (sDefaultContactImage == null) {
-            sDefaultContactImage = context.getResources().getDrawable(R.drawable.ic_contact_picture);
-        }
     }
 
     @Override
@@ -304,7 +295,8 @@ public class MessageListItem extends LinearLayout implements
                     mContext.getResources(), false, defaultImageRequest);
             }
         } else {
-            avatarDrawable = sDefaultContactImage;
+            avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    mContext.getResources(), false, null);
         }
         mAvatar.setImageDrawable(avatarDrawable);
     }

@@ -125,7 +125,6 @@ public class QuickMessagePopup extends Activity implements
     private Button mViewButton;
 
     // General items
-    private Drawable mDefaultContactImage;
     private Context mContext;
     private boolean mScreenUnlocked = false;
     private KeyguardManager mKeyguardManager = null;
@@ -160,7 +159,6 @@ public class QuickMessagePopup extends Activity implements
         // Initialise the message list and other variables
         mContext = this;
         mMessageList = new ArrayList<QuickMessage>();
-        mDefaultContactImage = getResources().getDrawable(R.drawable.ic_contact_picture);
         mNumTemplates = getTemplatesCount();
         mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
@@ -615,7 +613,8 @@ public class QuickMessagePopup extends Activity implements
                 }
             }
         } else {
-            avatarDrawable = mDefaultContactImage;
+            avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    mContext.getResources(), false, null);
         }
         badge.setImageDrawable(avatarDrawable);
     }
