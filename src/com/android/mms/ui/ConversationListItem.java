@@ -59,8 +59,6 @@ public class ConversationListItem extends RelativeLayout implements Contact.Upda
     private View mErrorIndicator;
     private QuickContactBadge mAvatarView;
 
-    static private Drawable sDefaultContactImage;
-
     // For posting UI update Runnables from other threads:
     private Handler mHandler = new Handler();
 
@@ -74,10 +72,6 @@ public class ConversationListItem extends RelativeLayout implements Contact.Upda
 
     public ConversationListItem(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        if (sDefaultContactImage == null) {
-            sDefaultContactImage = context.getResources().getDrawable(R.drawable.ic_contact_picture);
-        }
     }
 
     @Override
@@ -158,8 +152,8 @@ public class ConversationListItem extends RelativeLayout implements Contact.Upda
                     mContext.getResources(), false, defaultImageRequest);
             }
         } else {
-            // TODO get a multiple recipients asset (or do something else)
-            avatarDrawable = sDefaultContactImage;
+            avatarDrawable = ContactPhotoManager.getDefaultAvatarDrawableForContact(
+                    mContext.getResources(), false, null);
             mAvatarView.assignContactUri(null);
         }
         mAvatarView.setImageDrawable(avatarDrawable);
