@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4b713d8b_d405d17e",
+        "filename": "src/com/android/mms/ui/ComposeMessageActivity.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2403,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2014-07-31T12:33:35Z",
+      "side": 1,
+      "message": "\"following\" shouldnt make you \"blind\" for making new things better :)\nBased on java syntax there is no need to use ComposeMessageActivity.this here and especially dont mix and match it in the same line below :)",
+      "parentUuid": "4b713d8b_74d6bdf8",
+      "revId": "414cef6f6a44db286d4cea2296fb7f8b6c701957",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b713d8b_349e0559",
         "filename": "src/com/android/mms/ui/ComposeMessageActivity.java",
         "patchSetId": 6
