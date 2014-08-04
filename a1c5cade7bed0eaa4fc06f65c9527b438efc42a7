@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b6ec9b0_13f4cccb",
+        "filename": "src/com/android/mms/ui/MessagingPreferenceActivity.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2014-08-04T17:59:30Z",
+      "side": 1,
+      "message": "mms has its own local settings (see above) \nno need to write this to the global settings space\nactually it wil not work  anyway cause this app doesnt have thje\nWRITE_SETTINGS permissions",
+      "range": {
+        "startLine": 692,
+        "startChar": 17,
+        "endLine": 692,
+        "endChar": 25
+      },
+      "revId": "a1c5cade7bed0eaa4fc06f65c9527b438efc42a7",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
