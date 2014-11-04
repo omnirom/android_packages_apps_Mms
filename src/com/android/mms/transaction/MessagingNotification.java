@@ -65,6 +65,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.mms.LogTag;
+import com.android.mms.MmsConfig;
 import com.android.mms.R;
 import com.android.mms.data.Contact;
 import com.android.mms.data.Conversation;
@@ -80,6 +81,7 @@ import com.android.mms.ui.MessagingPreferenceActivity;
 import com.android.mms.util.AddressUtils;
 import com.android.mms.util.DownloadManager;
 import com.android.mms.widget.MmsWidgetProvider;
+
 import com.google.android.mms.MmsException;
 import com.google.android.mms.pdu.EncodedStringValue;
 import com.google.android.mms.pdu.GenericPdu;
@@ -255,6 +257,16 @@ public class MessagingNotification {
             Contact.logWithTrace(TAG, "blockingUpdateNewMessageIndicator: newMsgThreadId: " +
                     newMsgThreadId);
         }
+        final boolean isDefaultSmsApp = MmsConfig.isSmsEnabled(context);
+        if (!isDefaultSmsApp) {
+            cancelNotification(context, NOTIFICATION_ID);
+            if (DEBUG || Log.isLoggable(LogTag.APP, Log.VERBOSE)) {
+                Log.d(TAG, "blockingUpdateNewMessageIndicator: not the default sms app - skipping "
+                        + "notification");
+            }
+            return;
+        }
+
         // notificationSet is kept sorted by the incoming message delivery time, with the
         // most recent message first.
         SortedSet<NotificationInfo> notificationSet =
@@ -968,9 +980,17 @@ public class MessagingNotification {
         noti.setContentTitle(title)
             .setContentIntent(
                     taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT))
-            .addKind(Notification.KIND_MESSAGE)
+            .setCategory(Notification.CATEGORY_MESSAGE)
             .setPriority(Notification.PRIORITY_DEFAULT);     // TODO: set based on contact coming
                                                              // from a favorite.
+
+        // Tag notification with all senders.
+        for (NotificationInfo info : notificationSet) {
+            Uri peopleReferenceUri = info.mSender.getPeopleReferenceUri();
+            if (peopleReferenceUri != null) {
+                noti.addPerson(peopleReferenceUri.toString());
+            }
+        }
 
         int defaults = 0;
 

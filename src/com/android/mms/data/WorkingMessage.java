@@ -80,7 +80,7 @@ import com.google.android.mms.pdu.SendReq;
  * Contains all state related to a message being edited by the user.
  */
 public class WorkingMessage {
-    private static final String TAG = "WorkingMessage";
+    private static final String TAG = LogTag.TAG;
     private static final boolean DEBUG = false;
 
     // Public intents
@@ -1597,6 +1597,9 @@ public class WorkingMessage {
             slideshow.sync(pb);
             return res;
         } catch (MmsException e) {
+            return null;
+        } catch (IllegalStateException e) {
+            Log.e(TAG,"failed to create draft mms "+ e);
             return null;
         }
     }

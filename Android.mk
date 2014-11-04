@@ -2,6 +2,11 @@
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
+# Include res dir from chips
+chips_dir := ../../../frameworks/opt/chips/res
+res_dirs := $(chips_dir) res
+
+$(shell rm -f $(LOCAL_PATH)/chips)
 
 LOCAL_MODULE_TAGS := optional
 
@@ -11,7 +16,12 @@ chips_dir := ../../../frameworks/ex/chips
 src_dirs := src $(contacts_common_dir)/src
 res_dirs := res $(contacts_common_dir)/res $(chips_dir)/res
 
-$(shell rm -f $(LOCAL_PATH)/chips)
+# Builds against the public SDK
+#LOCAL_SDK_VERSION := current
+
+LOCAL_JAVA_LIBRARIES += telephony-common
+LOCAL_STATIC_JAVA_LIBRARIES += android-common jsr305
+LOCAL_STATIC_JAVA_LIBRARIES += libchips
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
