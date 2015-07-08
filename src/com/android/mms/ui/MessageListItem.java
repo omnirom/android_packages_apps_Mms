@@ -835,4 +835,11 @@ public class MessageListItem extends LinearLayout implements
         // TODO Auto-generated method stub
 
     }
+
+    public void setBodyTextSize(float size) {
+        if (mBodyTextView != null
+                && mBodyTextView.getVisibility() == View.VISIBLE) {
+            mBodyTextView.setTextSize(size);
+        }
+    }
 }
