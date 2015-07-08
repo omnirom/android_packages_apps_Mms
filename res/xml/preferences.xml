@@ -112,4 +112,19 @@
                         android:dependency="pref_key_enable_notifications"
                         android:defaultValue="false" />
   </PreferenceCategory>
+
+    <!-- Extra Settings -->
+    <PreferenceCategory android:title="@string/pref_extra_settings">
+
+        <ListPreference
+            android:key="pref_key_message_font_size"
+            android:defaultValue="@string/def_message_font_size_value"
+            android:title="@string/pref_title_message_font_size"
+            android:dialogTitle="@string/pref_title_message_font_size"
+            android:entries="@array/pref_message_font_size_choices"
+            android:entryValues="@array/pref_message_font_size_values"
+            android:summary="@string/pref_title_message_font_size"/>
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
