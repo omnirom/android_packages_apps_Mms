@@ -124,6 +124,8 @@ public class MessageListAdapter extends CursorAdapter {
     private Context mContext;
     private boolean mIsGroupConversation;
 
+    private float mTextSize = 0;
+
     public MessageListAdapter(
             Context context, Cursor c, ListView listView,
             boolean useDefaultColumnsMap, Pattern highlight) {
@@ -501,5 +503,9 @@ public class MessageListAdapter extends CursorAdapter {
                 MessageItem oldValue, MessageItem newValue) {
             oldValue.cancelPduLoading();
         }
+    }
+
+    public void setTextSize(float size) {
+        mTextSize = size;
     }
 }

@@ -74,6 +74,9 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     public static final String AUTO_DELETE              = "pref_key_auto_delete";
     public static final String GROUP_MMS_MODE           = "pref_key_mms_group_mms";
 
+    //Fontsize
+    public static final String FONT_SIZE_SETTING         = "pref_key_message_font_size";
+
     // Menu entries
     private static final int MENU_RESTORE_DEFAULTS    = 1;
 
@@ -97,6 +100,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     private CheckBoxPreference mVibratePref;
     private CheckBoxPreference mEnableNotificationsPref;
     private CheckBoxPreference mMmsAutoRetrievialPref;
+    private ListPreference mFontSizePref;
     private RingtonePreference mRingtonePref;
     private Recycler mSmsRecycler;
     private Recycler mMmsRecycler;
@@ -105,6 +109,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
     // Whether or not we are currently enabled for SMS. This field is updated in onResume to make
     // sure we notice if the user has changed the default SMS app.
     private boolean mIsSmsEnabled;
+
+    public static final String MESSAGE_FONT_SIZE = "message_font_size";
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -203,6 +209,8 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         }
         mRingtonePref = (RingtonePreference) findPreference(NOTIFICATION_RINGTONE);
 
+        mFontSizePref = (ListPreference) findPreference(FONT_SIZE_SETTING);
+
         setMessagePreferences();
     }
 
@@ -278,6 +286,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity
 
         String soundValue = sharedPreferences.getString(NOTIFICATION_RINGTONE, null);
         setRingtoneSummary(soundValue);
+        setSmsPreferFontSummary();
     }
 
     private void setRingtoneSummary(String soundValue) {
@@ -456,5 +465,22 @@ public class MessagingPreferenceActivity extends PreferenceActivity
         return MmsConfig.getGroupMmsEnabled() &&
                 groupMmsPrefOn &&
                 !TextUtils.isEmpty(MessageUtils.getLocalNumber());
+    }
+
+    private void setSmsPreferFontSummary() {
+        if (mFontSizePref != null) {
+            mFontSizePref
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                        public boolean onPreferenceChange(
+                                Preference preference, Object newValue) {
+                            final String summary = newValue.toString();
+                            int index = mFontSizePref.findIndexOfValue(summary);
+                            mFontSizePref.setSummary(mFontSizePref.getEntries()[index]);
+                            mFontSizePref.setValue(summary);
+                            return true;
+                        }
+                    });
+            mFontSizePref.setSummary(mFontSizePref.getEntry());
+        }
     }
 }
