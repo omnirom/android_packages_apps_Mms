@@ -141,6 +141,7 @@ public class MessageListItem extends LinearLayout implements
         mDetailsIndicator = (ImageView) findViewById(R.id.details_indicator);
         mAvatar = (QuickContactDivot) findViewById(R.id.avatar);
         mMessageBlock = findViewById(R.id.message_block);
+        setBodyTextSize(MessageUtils.getFontSize());
     }
 
     public void bind(MessageItem msgItem, boolean convHasMultiRecipients, int position) {
@@ -834,5 +835,12 @@ public class MessageListItem extends LinearLayout implements
     public void seekVideo(int seekTo) {
         // TODO Auto-generated method stub
 
+    }
+
+    public void setBodyTextSize(float size) {
+        if (mBodyTextView != null
+                && mBodyTextView.getVisibility() == View.VISIBLE) {
+            mBodyTextView.setTextSize(size);
+        }
     }
 }

@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SqliteWrapper;
@@ -40,6 +41,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Telephony.Mms;
 import android.provider.Telephony.Sms;
@@ -82,6 +84,8 @@ public class MessageUtils {
     interface ResizeImageResultCallback {
         void onResizeResult(PduPart part, boolean append);
     }
+
+    private static final int DEFAULT_FONT_SIZE = 18;
 
     private static final String TAG = LogTag.TAG;
     private static String sLocalNumber;
@@ -522,6 +526,17 @@ public class MessageUtils {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, TempFileProvider.SCRAP_CONTENT_URI);
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static int getFontSize() {
+        SharedPreferences sp = PreferenceManager
+                .getDefaultSharedPreferences(MmsApp
+                        .getApplication());
+        int mFontSize = Integer
+                .parseInt(sp.getString(
+                        MessagingPreferenceActivity.FONT_SIZE_SETTING,
+                        Integer.toString(DEFAULT_FONT_SIZE)));
+        return mFontSize;
     }
 
     // Public for until tests

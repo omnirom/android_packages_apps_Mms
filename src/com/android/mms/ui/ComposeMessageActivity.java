@@ -2273,6 +2273,7 @@ public class ComposeMessageActivity extends Activity
         mIsRunning = true;
         updateThreadIdIfRunning();
         mConversation.markAsRead();
+        setTextFontsize();
     }
 
     @Override
@@ -4356,5 +4357,13 @@ public class ComposeMessageActivity extends Activity
             }
         }
         // If we're not running, but resume later, the current thread ID will be set in onResume()
+    }
+
+    private void setTextFontsize() {
+        int size =  MessageUtils.getFontSize();
+        if (mTextEditor != null) {
+            mTextEditor.setTextSize(size);
+        }
+        mMsgListAdapter.notifyDataSetChanged();
     }
 }
